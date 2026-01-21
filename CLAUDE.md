@@ -8,7 +8,7 @@
 
 ## Typing 
 
-All type definitions in the project are located under the /src/@types folder.
+All type definitions in the project are located under the /@types folder.
 
 - Important Rules:
 
@@ -51,7 +51,7 @@ return <DataDisplay data={data} />;
 
 - Each section must be created as a separate component and imported into the relevant file.
 
-- Use this path for components: /src/components
+- Use this path for components: /components
 
 - Break down pages into logical sections
 
