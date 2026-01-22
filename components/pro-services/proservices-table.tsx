@@ -9,7 +9,7 @@ const SAMPLE = [
     { id: "c3", avatar: 'MH', name: "MediHealth International LLC", type: "Healthcare", module: "MENA Leaders", reg: 'Reg: DM-2023-45678', },
 ]
 
-export default function ProServicesTable({ data = SAMPLE }: { data?: Record<string, string>[] }) {
+export default function CompaniesTable({ data = SAMPLE }: { data?: Record<string, string>[] }) {
     return (
         <div className="w-full rounded-b-lg border bg-card/60 shadow-sm overflow-hidden">
             <div className="overflow-x-auto">
