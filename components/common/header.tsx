@@ -25,7 +25,7 @@ export default function Header(props: HeaderProps) {
     : MENU_BUTTON_LABELS.OPEN;
 
   return (
-    <header className="flex items-center justify-between gap-5 bg-white p-5 px-10 border-b-1 border-gray-200">
+    <header className="sticky top-0 z-50 flex items-center justify-between gap-5 bg-white p-5 px-10 border-b-1 border-gray-200">
       <div className="flex items-center gap-3">
         <Button
           aria-label={menuLabel}

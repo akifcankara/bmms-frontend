@@ -14,7 +14,7 @@ type SideMenuProps = {
 const SIDEBAR_BASE_CLASS_NAME =
   "flex flex-col gap-5 w-[255px] h-screen px-3 py-4 bg-white";
 const SIDEBAR_MOBILE_CLASS_NAME =
-  "fixed left-0 top-0 z-40 transform transition-transform md:static md:translate-x-0";
+  "fixed left-0 top-0 z-90 transform transition-transform md:sticky md:top-0 md:translate-x-0";
 const SIDEBAR_MOBILE_OPEN_CLASS_NAME = "translate-x-0";
 const SIDEBAR_MOBILE_CLOSED_CLASS_NAME = "-translate-x-full";
 
