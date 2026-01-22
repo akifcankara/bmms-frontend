@@ -4,7 +4,7 @@ import MedalBadge from "../icons/medal-badge";
 import ModuleCard from "./module-card";
 
 export default function Modules(){
-    return  <section className="grid grid-cols-3 gap-4">
+    return  <section className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
               <ModuleCard
                 title="PRO Module"

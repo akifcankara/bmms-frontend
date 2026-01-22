@@ -7,7 +7,7 @@ import Card from "./card";
 
 export default function Stats(){
     return  <section className="flex flex-col gap-3">
-                <div className="flex flex-wrap gap-3">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   <button className="cursor-pointer flex-1 bg-white rounded-lg px-4 py-2 text-sm font-medium shadow-sm hover:shadow-md transition-shadow">
                     All
                   </button>
@@ -22,7 +22,7 @@ export default function Stats(){
                     10 Jan 2026 - 20 Jan 2026
                   </button>
                 </div>
-                <div className="grid grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                   <div>
                     <Card
                       icon={<UserBadge />}

@@ -1,20 +1,63 @@
+"use client";
+
 import Image from "next/image";
+import { Menu } from "lucide-react";
 import { Button } from "../ui/button";
 import Avatar from "./avatar";
 import PlusIcon from "../icons/plus";
 
-export default function Header() {
-    return <header className="flex gap-5 items-center bg-white p-5 px-10 border-b-1 border-gray-200">
-        <Image src={'/logo.jpg'} alt="BMMS" width={125} height={42} />
-        <div className="flex flex-wrap w-full items-center justify-between pl-[95px]">
-            <div className="flex flex-col gap-2">
-                <h1 className="text-2xl font-semibold">Operations Dashboard</h1>
-                <p className="text-sm text-slate-500">Manage clients, cases, and business operations</p>
-            </div>
-            <div className="flex items-center gap-5">
-                <Button className="text-white px-10 py-5 cursor-pointer" style={{ background: 'linear-gradient(90deg, #00A0D2 10.38%, #05DC82 100%)' }}><PlusIcon /> New Client</Button>
-                <Avatar />
-            </div>
+type HeaderProps = {
+  onMenuToggle: () => void;
+  isSidebarOpen: boolean;
+};
+
+const MENU_BUTTON_LABELS = {
+  OPEN: "Open menu",
+  CLOSE: "Close menu",
+};
+const MENU_BUTTON_CLASS_NAME = "md:hidden";
+const HEADER_ACTIONS_CLASS_NAME =
+  "hidden md:flex flex-wrap w-full items-center justify-between md:pl-[95px]";
+
+export default function Header(props: HeaderProps) {
+  const menuLabel = props.isSidebarOpen
+    ? MENU_BUTTON_LABELS.CLOSE
+    : MENU_BUTTON_LABELS.OPEN;
+
+  return (
+    <header className="flex items-center justify-between gap-5 bg-white p-5 px-10 border-b-1 border-gray-200">
+      <div className="flex items-center gap-3">
+        <Button
+          aria-label={menuLabel}
+          type="button"
+          size="icon"
+          variant="ghost"
+          className={MENU_BUTTON_CLASS_NAME}
+          onClick={props.onMenuToggle}
+        >
+          <Menu />
+        </Button>
+        <Image src={"/logo.jpg"} alt="BMMS" width={125} height={42} />
+      </div>
+      <div className={HEADER_ACTIONS_CLASS_NAME}>
+        <div className="flex flex-col gap-2">
+          <h1 className="text-2xl font-semibold">Operations Dashboard</h1>
+          <p className="text-sm text-slate-500">
+            Manage clients, cases, and business operations
+          </p>
         </div>
+        <div className="flex items-center gap-5">
+          <Button
+            className="text-white px-10 py-5 cursor-pointer"
+            style={{
+              background: "linear-gradient(90deg, #00A0D2 10.38%, #05DC82 100%)",
+            }}
+          >
+            <PlusIcon /> New Client
+          </Button>
+          <Avatar />
+        </div>
+      </div>
     </header>
+  );
 }

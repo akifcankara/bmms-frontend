@@ -5,11 +5,31 @@ import Company from "../icons/company";
 import Pro from "../icons/pro";
 import World from "../icons/world";
 import Leader from "../icons/leader";
+import { cn } from "@/lib/utils";
 
-export default function SideMenu() {
+type SideMenuProps = {
+  isMobileOpen: boolean;
+};
+
+const SIDEBAR_BASE_CLASS_NAME =
+  "flex flex-col gap-5 w-[255px] h-screen px-3 py-4 bg-white";
+const SIDEBAR_MOBILE_CLASS_NAME =
+  "fixed left-0 top-0 z-40 transform transition-transform md:static md:translate-x-0";
+const SIDEBAR_MOBILE_OPEN_CLASS_NAME = "translate-x-0";
+const SIDEBAR_MOBILE_CLOSED_CLASS_NAME = "-translate-x-full";
+
+export default function SideMenu(props: SideMenuProps) {
+  const mobileStateClassName = props.isMobileOpen
+    ? SIDEBAR_MOBILE_OPEN_CLASS_NAME
+    : SIDEBAR_MOBILE_CLOSED_CLASS_NAME;
+
   return (
     <aside
-      className="flex flex-col gap-5 w-[255px] h-screen px-3 py-4 bg-white"
+      className={cn(
+        SIDEBAR_BASE_CLASS_NAME,
+        SIDEBAR_MOBILE_CLASS_NAME,
+        mobileStateClassName
+      )}
       style={{ borderRight: "1px solid var(--sidebar-border)" }}
     >
       <div className="flex flex-col gap-2">

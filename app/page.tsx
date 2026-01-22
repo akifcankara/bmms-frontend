@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <>
           <Stats />
-          <Modules />
+           <Modules />
           <ClientsTable />
           <Revenues />
     </>

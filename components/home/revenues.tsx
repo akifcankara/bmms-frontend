@@ -6,7 +6,7 @@ import Increase from "../icons/increase";
 import RevenueCard from "./revenue-card";
 
 export default function Revenues(){
-    return    <section className="grid grid-cols-3 gap-4 mb-6">
+    return    <section className="grid grid-col-1 md:grid-cols-3 gap-4 mb-6">
                 <RevenueCard
                   leftIcon={<DollarBadge />}
                   rightIcon={<Increase />}

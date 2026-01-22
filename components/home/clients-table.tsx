@@ -43,22 +43,22 @@ export default function ClientsTable() {
           <Button variant="ghost">View All</Button>
         </div>
       </div>
-      <div className="overflow-auto">
-        <table className="w-full text-sm">
+      <div className="overflow-x-auto">
+        <table className="w-full min-w-[720px] text-sm">
           <thead>
             <tr className="text-left text-xs text-slate-500">
-              <th className="px-6 py-3">Client</th>
-              <th className="px-6 py-3">Type</th>
-              <th className="px-6 py-3">Module</th>
-              <th className="px-6 py-3">Status</th>
-              <th className="px-6 py-3">Last Update</th>
-              <th className="px-6 py-3">Action</th>
+              <th className="px-4 py-3 md:px-6">Client</th>
+              <th className="px-4 py-3 md:px-6">Type</th>
+              <th className="px-4 py-3 md:px-6">Module</th>
+              <th className="px-4 py-3 md:px-6">Status</th>
+              <th className="px-4 py-3 md:px-6">Last Update</th>
+              <th className="px-4 py-3 md:px-6">Action</th>
             </tr>
           </thead>
           <tbody>
             {rows.map((r) => (
               <tr key={r.email} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                <td className="px-6 py-4">
+                <td className="px-4 py-4 md:px-6">
                   <div className="flex items-center gap-4">
                     <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-sm font-semibold">{r.initials}</div>
                     <div>
@@ -67,17 +67,17 @@ export default function ClientsTable() {
                     </div>
                   </div>
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-4 py-4 md:px-6">
                   <span className="text-xs px-2 py-1 rounded-full bg-gray-100">{r.type}</span>
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-4 py-4 md:px-6">
                   <span className="text-xs px-2 py-1 rounded-full bg-purple-50 text-purple-700">{r.module}</span>
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-4 py-4 md:px-6">
                   <span className="text-xs px-2 py-1 rounded-full bg-green-50 text-green-700">{r.status}</span>
                 </td>
-                <td className="px-6 py-4">{r.updated}</td>
-                <td className="px-6 py-4">
+                <td className="px-4 py-4 md:px-6">{r.updated}</td>
+                <td className="px-4 py-4 md:px-6">
                   <Button variant="ghost" size="sm">View</Button>
                 </td>
               </tr>
