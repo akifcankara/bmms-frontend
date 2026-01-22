@@ -4,7 +4,7 @@ import Avatar from "./avatar";
 import PlusIcon from "../icons/plus";
 
 export default function Header() {
-    return <header className="flex gap-5 items-center mb-6 bg-white p-5 px-10 border-b-1 border-gray-200">
+    return <header className="flex gap-5 items-center bg-white p-5 px-10 border-b-1 border-gray-200">
         <Image src={'/logo.jpg'} alt="BMMS" width={125} height={42} />
         <div className="flex w-full items-center justify-between pl-[100px]">
             <div className="flex flex-col gap-2">

@@ -31,17 +31,17 @@ function MenuItem({ label, icon, count, active }: { label: string; icon?: string
 export default function SideMenu() {
   return (
     <aside
-      className="w-[255px] h-screen px-3 py-4"
+      className="flex flex-col gap-5 w-[255px] h-screen px-3 py-4 bg-white"
       style={{ borderRight: "1px solid var(--sidebar-border)" }}
     >
-      <div className="mb-6">
+      <div className="flex flex-col gap-2">
         <div className="text-xs uppercase tracking-wide font-semibold" style={{ color: "var(--sidebar-foreground)" }}>
           Dashboard
         </div>
         <MenuItem label="Dashboard" icon={icons.dashboard} active />
       </div>
 
-      <div className="mb-6">
+      <div className="flex flex-col gap-2">
         <div className="text-xs uppercase tracking-wide font-semibold" style={{ color: "var(--sidebar-foreground)" }}>
           Clients
         </div>
@@ -49,7 +49,7 @@ export default function SideMenu() {
         <MenuItem label="Companies" icon={icons.companies} count={89} />
       </div>
 
-      <div className="mb-6">
+      <div className="flex flex-col gap-2">
         <div className="text-xs uppercase tracking-wide font-semibold" style={{ color: "var(--sidebar-foreground)" }}>
           Modules
         </div>
