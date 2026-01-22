@@ -5,6 +5,7 @@ import { Menu } from "lucide-react";
 import { Button } from "../ui/button";
 import Avatar from "./avatar";
 import PlusIcon from "../icons/plus";
+import { useBreadcrumb } from "@/store/breadcrumb";
 
 type HeaderProps = {
   onMenuToggle: () => void;
@@ -20,6 +21,9 @@ const HEADER_ACTIONS_CLASS_NAME =
   "hidden md:flex flex-wrap w-full items-center justify-between md:pl-[95px]";
 
 export default function Header(props: HeaderProps) {
+
+  const { title, subtitle, buttonText } = useBreadcrumb();
+
   const menuLabel = props.isSidebarOpen
     ? MENU_BUTTON_LABELS.CLOSE
     : MENU_BUTTON_LABELS.OPEN;
@@ -41,9 +45,9 @@ export default function Header(props: HeaderProps) {
       </div>
       <div className={HEADER_ACTIONS_CLASS_NAME}>
         <div className="flex flex-col gap-2">
-          <h1 className="text-2xl font-semibold">Operations Dashboard</h1>
+          <h1 className="text-2xl font-semibold">{title}</h1>
           <p className="text-sm text-slate-500">
-            Manage clients, cases, and business operations
+            {subtitle}
           </p>
         </div>
         <div className="flex items-center gap-5">
@@ -53,7 +57,7 @@ export default function Header(props: HeaderProps) {
               background: "linear-gradient(90deg, #00A0D2 10.38%, #05DC82 100%)",
             }}
           >
-            <PlusIcon /> New Client
+            <PlusIcon /> {buttonText}
           </Button>
           <Avatar />
         </div>
