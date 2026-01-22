@@ -1,5 +1,6 @@
 "use client";
 import FilterIcon from "../icons/filter-icon";
+import PlusIcon from "../icons/plus";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 
@@ -15,6 +16,14 @@ export default function FilterTable() {
             </div>
 
             <div className="flex items-center gap-2">
+                <Button
+                            className="text-white px-10 py-5 cursor-pointer"
+                            style={{
+                              background: "linear-gradient(90deg, #00A0D2 10.38%, #05DC82 100%)",
+                            }}
+                          >
+                            <PlusIcon /> New Client
+                          </Button>
                  <Input
                     placeholder={SEARCH_PLACEHOLDER}
                     className="flex-1 w-[300px] border-[#D1D5DB]"
