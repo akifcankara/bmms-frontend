@@ -1,10 +1,10 @@
-import MenuItem from "./common/menu-item";
+import MenuItem from "./menu-item";
 import { ChartLine, DollarSign, Handshake, Settings, User } from "lucide-react";
-import Clients from "./icons/clients";
-import Company from "./icons/company";
-import Pro from "./icons/pro";
-import World from "./icons/world";
-import Leader from "./icons/leader";
+import Clients from "../icons/clients";
+import Company from "../icons/company";
+import Pro from "../icons/pro";
+import World from "../icons/world";
+import Leader from "../icons/leader";
 
 export default function SideMenu() {
   return (

@@ -1,10 +1,14 @@
-import Card from "@/components/card";
-import ClientsTable from "@/components/clients-table";
-import SideMenu from "@/components/side-menu";
-import ModuleCard from "@/components/module-card";
-import RevenueCard from "@/components/revenue-card";
-import PartnersTable from "@/components/partners-table";
+import Card from "@/components/home/card";
+import ClientsTable from "@/components/home/clients-table";
+import SideMenu from "@/components/common/side-menu";
+import ModuleCard from "@/components/home/module-card";
+import RevenueCard from "@/components/home/revenue-card";
+import PartnersTable from "@/components/home/partners-table";
 import Header from "@/components/common/header";
+import UserBadge from "@/components/icons/user-badge";
+import BagBadge from "@/components/icons/bag-badge";
+import GlobalBadge from "@/components/icons/global-badge";
+import MedalBadge from "@/components/icons/medal-badge";
 
 export default function Home() {
   return (
@@ -13,19 +17,37 @@ export default function Home() {
       <div className="flex">
         <SideMenu />
         <main className="flex-1 p-6">
-
             <section className="grid grid-cols-4 gap-4 mb-6">
               <div>
-                <Card title="Total Clients" value={248} hint="23 new this month" />
+                <Card 
+                  icon={<UserBadge />}
+                  title="Total Clients" 
+                  value={248} 
+                  hint="23 new this month" 
+                />
               </div>
               <div>
-                <Card title="PRO Cases" value={67} hint="15 pending approval" />
+                <Card 
+                  icon={<BagBadge />}
+                  title="PRO Cases" 
+                  value={67} 
+                  hint="15 pending approval" 
+                />
               </div>
               <div>
-                <Card title="Expansion Projects" value={142} hint="28 in progress" />
+                <Card 
+                  icon={<GlobalBadge />}
+                  title="Expansion Projects" 
+                  value={142} 
+                  hint="28 in progress" />
               </div>
               <div>
-                <Card title="MENA Leaders" value={39} hint="7 under review" />
+                <Card 
+                  icon={<MedalBadge />}
+                  title="MENA Leaders" 
+                  value={39} 
+                  hint="7 under review" 
+                />
               </div>
             </section>
             <section className="grid grid-cols-3 gap-4 mb-6">
