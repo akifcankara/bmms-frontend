@@ -33,7 +33,7 @@ const rows = [
 
 export default function ClientsTable() {
   return (
-    <div className="mt-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow overflow-hidden">
+    <div className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow overflow-hidden">
       <div className="p-4 border-b border-gray-100 flex items-center justify-between">
         <div>
           <h3 className="text-lg font-medium">Clients</h3>
