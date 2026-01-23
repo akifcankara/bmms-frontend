@@ -14,7 +14,7 @@ export default function FilterTable() {
                 <p className="text-[#6B7280] text-md">89 clients found</p>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2">
                  <Input
                     placeholder={SEARCH_PLACEHOLDER}
                     className="flex-1 w-[300px] border-[#D1D5DB]"

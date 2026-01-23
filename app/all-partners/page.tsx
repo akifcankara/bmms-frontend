@@ -4,7 +4,7 @@ import FilterTable from "@/components/companies/filter-table"
 
 export default function AllPartners() {
     return (
-        <main className="p-6">
+        <main className="p-2 md:p-6">
            <FilterTable />
            <AllPartnersTable />
         </main>

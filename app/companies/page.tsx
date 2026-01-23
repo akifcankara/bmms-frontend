@@ -14,7 +14,7 @@ export default function Companies() {
           }, [])
 
     return (
-        <main className="p-6">
+        <main className="p-2 md:p-6">
            <FilterTable />
            <CompaniesTable />
         </main>

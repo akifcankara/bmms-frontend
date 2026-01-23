@@ -12,7 +12,7 @@ export default function ProServicesPage() {
                 setContent('PRO services', 'PRO services', 'New Client');
               }, [])
 
-    return  <main className="p-6">
+    return  <main className="p-2 md:p-6">
                <FilterTable />
                <ProServicesTable />
             </main>

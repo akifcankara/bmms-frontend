@@ -15,7 +15,7 @@ export default function FilterTable() {
                 <p className="text-[#6B7280] text-md">89 companies found</p>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2">
                 <Button
                             className="text-white px-10 py-5 cursor-pointer"
                             style={{
