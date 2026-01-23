@@ -1,7 +1,6 @@
 "use client"
 
 import { Button } from "../ui/button"
-import { Badge } from "../ui/badge"
 
 const SAMPLE = [
     { id: "c1", avatar: 'AL', name: "AlphaTech Solutions LLC", type: "Technology", module: "PRO", reg: 'Reg: DM-2023-12890', },
