@@ -94,22 +94,22 @@ export default function SideMenu(props: SideMenuProps) {
           Management
         </div>
         <MenuItem 
-          to="/"
+          to="/task-management"
             label="Task Management" 
             icon={<Pro />} 
             count={67} 
             countBg="#FEE2E2"
             countColor="#B91C1C"
         />
-        <MenuItem to="/" label="Partners" icon={<Handshake width={18} height={18}  />} />
-        <MenuItem to="/" label="Financial" icon={<DollarSign width={18} height={18} />} />
+        <MenuItem to="/all-partners" label="Partners" icon={<Handshake width={18} height={18}  />} />
+        <MenuItem to="/financial-management" label="Financial" icon={<DollarSign width={18} height={18} />} />
       </div>
 
       <div>
         <div className="text-xs uppercase tracking-wide font-semibold mb-2" style={{ color: "var(--sidebar-foreground)" }}>
           System
         </div>
-        <MenuItem to="/" label="Users" icon={<User width={18} height={18} /> } />
+        <MenuItem to="/user-management" label="Users" icon={<User width={18} height={18} /> } />
         <MenuItem to="/" label="Settings" icon={<Settings width={18} height={18} /> } />
       </div>
     </aside>
