@@ -37,6 +37,7 @@ export default function SideMenu(props: SideMenuProps) {
           Dashboard
         </div>
         <MenuItem 
+            to="/"
             label="Dashboard" 
             icon={<ChartLine color="#4B5563" width={20} height={20} />} 
             active 
@@ -48,13 +49,14 @@ export default function SideMenu(props: SideMenuProps) {
           Clients
         </div>
         <MenuItem 
+            to="/all-clients"
             label="All Clients" 
             icon={<Clients />} 
             count={248}
             countColor="#1D4ED8"
             countBg="#DBEAFE"
         />
-        <MenuItem label="Companies" icon={<Company />} count={89} />
+        <MenuItem to="/companies" label="Companies" icon={<Company />} count={89} />
       </div>
 
       <div className="flex flex-col gap-2">
@@ -62,6 +64,7 @@ export default function SideMenu(props: SideMenuProps) {
           Modules
         </div>
         <MenuItem 
+          to="/pro-services"
             label="PRO" 
             icon={<Pro />} 
             count={67}
@@ -69,6 +72,7 @@ export default function SideMenu(props: SideMenuProps) {
             countColor="#7E22CE"
         />
         <MenuItem 
+          to="/"
             label="Expansion" 
             icon={<World/>} 
             count={142} 
@@ -76,6 +80,7 @@ export default function SideMenu(props: SideMenuProps) {
             countColor="#15803D"
         />
         <MenuItem 
+          to="/"
             label="MENA Leaders" 
             icon={<Leader />} 
             count={39}
@@ -89,22 +94,23 @@ export default function SideMenu(props: SideMenuProps) {
           Management
         </div>
         <MenuItem 
+          to="/"
             label="Task Management" 
             icon={<Pro />} 
             count={67} 
             countBg="#FEE2E2"
             countColor="#B91C1C"
         />
-        <MenuItem label="Partners" icon={<Handshake width={18} height={18}  />} />
-        <MenuItem label="Financial" icon={<DollarSign width={18} height={18} />} />
+        <MenuItem to="/" label="Partners" icon={<Handshake width={18} height={18}  />} />
+        <MenuItem to="/" label="Financial" icon={<DollarSign width={18} height={18} />} />
       </div>
 
       <div>
         <div className="text-xs uppercase tracking-wide font-semibold mb-2" style={{ color: "var(--sidebar-foreground)" }}>
           System
         </div>
-        <MenuItem label="Users" icon={<User width={18} height={18} /> } />
-        <MenuItem label="Settings" icon={<Settings width={18} height={18} /> } />
+        <MenuItem to="/" label="Users" icon={<User width={18} height={18} /> } />
+        <MenuItem to="/" label="Settings" icon={<Settings width={18} height={18} /> } />
       </div>
     </aside>
   );
