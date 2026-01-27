@@ -13,7 +13,7 @@ const DEFAULT_SIDEBAR_OPEN = false;
 const OVERLAY_CLASS_NAME = "fixed inset-0 bg-black/40 md:hidden z-30";
 const OVERLAY_LABEL = "Close menu";
 
-export default function AppShell(props: AppShellProps) {
+export default function FormShell(props: AppShellProps) {
     const [isSidebarOpen, setIsSidebarOpen] = useState(DEFAULT_SIDEBAR_OPEN);
 
     const handleToggleSidebar = () => {
@@ -33,7 +33,7 @@ export default function AppShell(props: AppShellProps) {
                 </div>
             </header>
             <div className="flex">
-                <main className="flex flex-col flex-1 min-w-0 p-6 gap-5">
+                <main className="flex flex-col flex-1 min-w-0 gap-5">
                     {props.children}
                 </main>
             </div>
