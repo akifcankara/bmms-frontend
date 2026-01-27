@@ -4,8 +4,6 @@
 
 ## General
 
-
-
 Follow these rules strictly when generating code or solutions:
 - Do not over-engineer.
 - Do not add unnecessary abstractions or complexity.

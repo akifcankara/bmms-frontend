@@ -6,6 +6,7 @@ import Revenues from "@/components/home/revenues";
 import PartnerPerformance from "@/components/home/partner-performance";
 import { useEffect } from "react";
 import { useBreadcrumb } from "@/store/breadcrumb";
+import AppShell from "@/components/common/app-shell";
 
 export default function Home() {
 
@@ -16,12 +17,12 @@ export default function Home() {
   }, [])
 
   return (
-    <>
-          <Stats />
-           <Modules />
-          <ClientsTable />
-          <Revenues />
-          <PartnerPerformance />
-    </>
+    <AppShell>
+      <Stats />
+      <Modules />
+      <ClientsTable />
+      <Revenues />
+      <PartnerPerformance />
+    </AppShell>
   );
 }

@@ -1,5 +1,6 @@
 "use client"
 import AllPartnersTable from "@/components/all-partners/allpartners-table"
+import AppShell from "@/components/common/app-shell";
 import FilterTable from "@/components/companies/filter-table"
 import { useBreadcrumb } from "@/store/breadcrumb";
 import { useEffect } from "react";
@@ -14,9 +15,11 @@ export default function AllPartners() {
   }, [])
 
   return (
-    <main className="p-2 md:p-6">
-      <FilterTable />
-      <AllPartnersTable />
-    </main>
+    <AppShell>
+      <main className="p-2 md:p-6">
+        <FilterTable />
+        <AllPartnersTable />
+      </main>
+    </AppShell>
   )
 }

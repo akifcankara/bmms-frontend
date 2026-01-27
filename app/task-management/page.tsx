@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import Table from "@/components/task-management/table";
 import Todo from "@/components/task-management/todo";
 import { useBreadcrumb } from "@/store/breadcrumb";
+import AppShell from "@/components/common/app-shell";
 
 export default function TaskManagement() {
 
@@ -12,10 +13,12 @@ export default function TaskManagement() {
         setContent('Task Managment', 'Organize and track all team tasks and assignments', 'New Client');
     }, [])
 
-    return <main className="flex flex-col gap-4">
-        <Todo />
-        <div>
-            <Table />
-        </div>
-    </main>
+    return <AppShell>
+        <main className="flex flex-col gap-4">
+            <Todo />
+            <div>
+                <Table />
+            </div>
+        </main>
+    </AppShell>
 }
