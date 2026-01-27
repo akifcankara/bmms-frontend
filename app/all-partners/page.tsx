@@ -7,16 +7,16 @@ import { useEffect } from "react";
 export default function AllPartners() {
 
 
-          const { setContent } = useBreadcrumb();
-            
-              useEffect(() => {
-                setContent('All Partners', 'Manage corporate entities and their associated clients', 'New Company');
-              }, [])
+  const { setContent } = useBreadcrumb();
 
-    return (
-        <main className="p-2 md:p-6">
-           <FilterTable />
-           <AllPartnersTable />
-        </main>
-    )
+  useEffect(() => {
+    setContent('All Partners', 'Manage corporate entities and their associated clients', 'New Company');
+  }, [])
+
+  return (
+    <main className="p-2 md:p-6">
+      <FilterTable />
+      <AllPartnersTable />
+    </main>
+  )
 }
