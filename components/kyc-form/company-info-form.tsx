@@ -2,7 +2,8 @@
 
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { Building2, Info, ShieldCheck } from "lucide-react";
+import { ArrowRight, Building2, Info, ShieldCheck } from "lucide-react";
+import { Button } from "../ui/button";
 
 const validationSchema = Yup.object({
   fullName: Yup.string().required("Full name is required"),
@@ -74,11 +75,10 @@ export default function CompanyInfoForm() {
                   name="fullName"
                   type="text"
                   placeholder="Enter your full name"
-                  className={`w-full px-4 py-3.5 border rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                    errors.fullName && touched.fullName
+                  className={`w-full px-4 py-3.5 border rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.fullName && touched.fullName
                       ? "border-red-300"
                       : "border-gray-300"
-                  }`}
+                    }`}
                 />
                 <ErrorMessage
                   name="fullName"
@@ -95,11 +95,10 @@ export default function CompanyInfoForm() {
                   name="email"
                   type="email"
                   placeholder="your.email@example.com"
-                  className={`w-full px-4 py-3.5 border rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                    errors.email && touched.email
+                  className={`w-full px-4 py-3.5 border rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.email && touched.email
                       ? "border-red-300"
                       : "border-gray-300"
-                  }`}
+                    }`}
                 />
                 <ErrorMessage
                   name="email"
@@ -123,11 +122,10 @@ export default function CompanyInfoForm() {
                     name="phoneNumber"
                     type="tel"
                     placeholder="50 123 4567"
-                    className={`flex-1 px-4 py-3.5 border rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                      errors.phoneNumber && touched.phoneNumber
+                    className={`flex-1 px-4 py-3.5 border rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.phoneNumber && touched.phoneNumber
                         ? "border-red-300"
                         : "border-gray-300"
-                    }`}
+                      }`}
                   />
                 </div>
                 <ErrorMessage
@@ -161,6 +159,17 @@ export default function CompanyInfoForm() {
                   All data is encrypted and handled according to GDPR standards
                 </p>
               </div>
+            </div>
+            <div className="w-full flex items-end">
+              <Button
+                className="text-white px-10 py-5 cursor-pointer"
+                style={{
+                  background: "linear-gradient(90deg, #00A0D2 10.38%, #05DC82 100%)",
+                }}
+              >
+                Next Page
+                <ArrowRight />
+              </Button>
             </div>
           </Form>
         )}
