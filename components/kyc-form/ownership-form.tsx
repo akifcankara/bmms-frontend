@@ -8,27 +8,10 @@ import { useKYCFormStore } from '@/stores/kyc-form-store';
 import OwnershipStructureSection from './ownership-structure-section';
 import OwnershipRevenueSection from './ownership-revenue-section';
 
-type OwnershipFormData = {
-  companySetupType: string;
-  parentCompanyName: string;
-  countryOfIncorporation: string;
-  commercialRegistrationNumber: string;
-  parentCompanyDocuments: File | null;
-  preferredJurisdiction: string;
-  specificLocation: string;
-  expectedTimeline: string;
-  primaryBusinessActivity: string;
-  industrySector: string;
-  additionalActivities: string;
-  licenseTypes: string[];
-  localRevenue: string;
-  expectedAnnualRevenue: string;
-};
-
 export default function OwnershipForm() {
   const { formData, setFormData, nextStep, prevStep } = useKYCFormStore();
 
-  const handleSubmit = (values: OwnershipFormData) => {
+  const handleSubmit = (values: any) => {
     setFormData('ownership', values);
     nextStep();
   };

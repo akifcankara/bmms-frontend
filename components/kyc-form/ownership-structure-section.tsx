@@ -89,30 +89,11 @@ const TIMELINES = [
   },
 ];
 
-import { FormikErrors, FormikTouched } from 'formik';
-
-type OwnershipFormValues = {
-  companySetupType: string;
-  parentCompanyName: string;
-  countryOfIncorporation: string;
-  commercialRegistrationNumber: string;
-  parentCompanyDocuments: File | null;
-  preferredJurisdiction: string;
-  specificLocation: string;
-  expectedTimeline: string;
-  primaryBusinessActivity: string;
-  industrySector: string;
-  additionalActivities: string;
-  licenseTypes: string[];
-  localRevenue: string;
-  expectedAnnualRevenue: string;
-};
-
 interface OwnershipStructureSectionProps {
-  errors: FormikErrors<OwnershipFormValues>;
-  touched: FormikTouched<OwnershipFormValues>;
-  values: OwnershipFormValues;
-  setFieldValue: (field: string, value: unknown) => void;
+  errors: any;
+  touched: any;
+  values: any;
+  setFieldValue: (field: string, value: any) => void;
 }
 
 export default function OwnershipStructureSection({
