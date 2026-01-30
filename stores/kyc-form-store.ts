@@ -25,20 +25,26 @@ interface KYCFormState {
       expectedAnnualRevenue: string;
     };
     ownership: {
-      companySetupType: string;
-      parentCompanyName: string;
-      countryOfIncorporation: string;
-      commercialRegistrationNumber: string;
-      parentCompanyDocuments: File | null;
-      preferredJurisdiction: string;
-      specificLocation: string;
-      expectedTimeline: string;
-      primaryBusinessActivity: string;
-      industrySector: string;
-      additionalActivities: string;
-      licenseTypes: string[];
-      localRevenue: string;
-      expectedAnnualRevenue: string;
+      ownershipType: string;
+      shareCapital: string;
+      numberOfShareholders: string;
+      shareholders: Array<{
+        id: string;
+        fullName: string;
+        nationality: string;
+        phoneCode: string;
+        phoneNumber: string;
+        address: string;
+        ownershipPercentage: string;
+        passportNumber: string;
+        passportCopy: File | null;
+        emiratesId: File | null;
+        residenceVisa: File | null;
+      }>;
+      generalManager: string;
+      director: string;
+      ubo: string;
+      hasLocalSponsor: string;
     };
   };
   nextStep: () => void;
@@ -74,20 +80,14 @@ export const useKYCFormStore = create<KYCFormState>((set) => ({
       expectedAnnualRevenue: '',
     },
     ownership: {
-      companySetupType: '',
-      parentCompanyName: '',
-      countryOfIncorporation: '',
-      commercialRegistrationNumber: '',
-      parentCompanyDocuments: null,
-      preferredJurisdiction: '',
-      specificLocation: '',
-      expectedTimeline: '',
-      primaryBusinessActivity: '',
-      industrySector: '',
-      additionalActivities: '',
-      licenseTypes: [],
-      localRevenue: '',
-      expectedAnnualRevenue: '',
+      ownershipType: '',
+      shareCapital: '',
+      numberOfShareholders: '',
+      shareholders: [],
+      generalManager: '',
+      director: '',
+      ubo: '',
+      hasLocalSponsor: '',
     },
   },
   nextStep: () =>
