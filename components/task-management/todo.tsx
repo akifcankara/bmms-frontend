@@ -1,3 +1,6 @@
+import { InProgressIcon } from "../icons/in-progress";
+import { OverdueIcon } from "../icons/overdue";
+import { PendingIcon } from "../icons/pending";
 import TaskColumn from "./task-column";
 
 const OVERDUE_TASKS = [
@@ -128,63 +131,6 @@ const PENDING_TASKS = [
     isOverdue: false,
   },
 ];
-
-const OverdueIcon = () => (
-  <svg
-    width="16"
-    height="16"
-    viewBox="0 0 16 16"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <circle cx="8" cy="8" r="7" stroke="#DC2626" strokeWidth="2" />
-    <path
-      d="M8 4V8L10.5 10.5"
-      stroke="#DC2626"
-      strokeWidth="2"
-      strokeLinecap="round"
-    />
-  </svg>
-);
-
-const InProgressIcon = () => (
-  <svg
-    width="16"
-    height="16"
-    viewBox="0 0 16 16"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M8 2C4.68629 2 2 4.68629 2 8C2 11.3137 4.68629 14 8 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8 2Z"
-      fill="#EA580C"
-    />
-    <path
-      d="M8 5V8L10.5 10.5"
-      stroke="white"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-    />
-  </svg>
-);
-
-const PendingIcon = () => (
-  <svg
-    width="12"
-    height="16"
-    viewBox="0 0 12 16"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M10 0H2C0.89543 0 0 0.89543 0 2V14C0 15.1046 0.89543 16 2 16H10C11.1046 16 12 15.1046 12 14V2C12 0.89543 11.1046 0 10 0Z"
-      fill="#A16207"
-    />
-    <rect x="3" y="5" width="6" height="1" rx="0.5" fill="white" />
-    <rect x="3" y="8" width="4" height="1" rx="0.5" fill="white" />
-    <rect x="3" y="11" width="5" height="1" rx="0.5" fill="white" />
-  </svg>
-);
 
 export default function Todo() {
   return (

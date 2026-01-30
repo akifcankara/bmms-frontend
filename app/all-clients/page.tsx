@@ -1,6 +1,6 @@
 "use client";
-import ClientsTable from "@/components/all-clients/clients-table";
-import FilterTable from "@/components/all-clients/filter-table";
+import Table from "@/components/all-clients/table";
+import Filter from "@/components/all-clients/filter";
 import Stats from "@/components/all-clients/stats";
 import AppShell from "@/components/common/app-shell";
 import { useBreadcrumb } from "@/store/breadcrumb";
@@ -14,12 +14,11 @@ export default function AllClients() {
     setContent('All Clients', 'Manage and view all client accounts', 'New Client');
   }, [])
 
-
   return <AppShell>
     <div className="flex flex-col gap-4">
       <Stats />
-      <FilterTable />
-      <ClientsTable />
+      <Filter />
+      <Table />
     </div>
   </AppShell>
 }

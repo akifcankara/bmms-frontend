@@ -2,7 +2,7 @@
 
 import AppShell from "@/components/common/app-shell";
 import CompaniesTable from "@/components/companies/companies-table"
-import FilterTable from "@/components/companies/filter-table"
+import Filter from "@/components/pro-services/filter";
 import { useBreadcrumb } from "@/store/breadcrumb";
 import { useEffect } from "react";
 
@@ -17,7 +17,7 @@ export default function Companies() {
   return (
     <AppShell>
       <main className="p-2 md:p-6">
-        <FilterTable />
+        <Filter />
         <CompaniesTable />
       </main>
     </AppShell>

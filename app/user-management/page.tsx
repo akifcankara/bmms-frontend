@@ -15,13 +15,14 @@ export default function UserManagement() {
         setContent('User Managment', 'Manage team members, roles, and permissions across the platform', 'New Client');
     }, [])
 
-    return <AppShell> <main className="flex flex-col gap-3">
-        <Stats />
-        <Table />
-        <div className="flex flex-wrap gap-2">
-            <PendingInvitations />
-            <RolesPermissions />
-        </div>
-    </main>
+    return <AppShell>
+        <main className="flex flex-col gap-3">
+            <Stats />
+            <Table />
+            <div className="flex flex-wrap gap-2">
+                <PendingInvitations />
+                <RolesPermissions />
+            </div>
+        </main>
     </AppShell>
 }
