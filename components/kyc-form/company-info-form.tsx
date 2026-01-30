@@ -1,29 +1,17 @@
-"use client";
+'use client';
 
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
-import { ArrowRight, Building2, Info, ShieldCheck } from "lucide-react";
-import { Button } from "../ui/button";
-
-const validationSchema = Yup.object({
-  fullName: Yup.string().required("Full name is required"),
-  email: Yup.string()
-    .email("Invalid email address")
-    .required("Email is required"),
-  phoneNumber: Yup.string().required("Phone number is required"),
-  currentLocation: Yup.string(),
-});
-
-const initialValues = {
-  fullName: "",
-  email: "",
-  phoneNumber: "",
-  currentLocation: "",
-};
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { ArrowRight, Building2, Info, ShieldCheck } from 'lucide-react';
+import { Button } from '../ui/button';
+import { validationSchema } from '@/schemas/kyc/company-info.schema';
+import { useKYCFormStore } from '@/stores/kyc-form-store';
 
 export default function CompanyInfoForm() {
-  const handleSubmit = (values: typeof initialValues) => {
-    console.log(values);
+  const { formData, setFormData, nextStep } = useKYCFormStore();
+
+  const handleSubmit = (values: typeof formData.companyInfo) => {
+    setFormData('companyInfo', values);
+    nextStep();
   };
 
   return (
@@ -35,7 +23,7 @@ export default function CompanyInfoForm() {
             className="w-14 h-14 rounded-xl flex items-center justify-center"
             style={{
               backgroundImage:
-                "linear-gradient(135deg, rgb(59, 130, 246) 0%, rgb(37, 99, 235) 100%)",
+                'linear-gradient(135deg, rgb(59, 130, 246) 0%, rgb(37, 99, 235) 100%)',
             }}
           >
             <Building2 size={20} className="text-white" />
@@ -59,9 +47,10 @@ export default function CompanyInfoForm() {
 
       {/* Form */}
       <Formik
-        initialValues={initialValues}
+        initialValues={formData.companyInfo}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
+        enableReinitialize
       >
         {({ errors, touched }) => (
           <Form className="space-y-6">
@@ -75,10 +64,11 @@ export default function CompanyInfoForm() {
                   name="fullName"
                   type="text"
                   placeholder="Enter your full name"
-                  className={`w-full px-4 py-3.5 border rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.fullName && touched.fullName
-                      ? "border-red-300"
-                      : "border-gray-300"
-                    }`}
+                  className={`w-full px-4 py-3.5 border rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                    errors.fullName && touched.fullName
+                      ? 'border-red-300'
+                      : 'border-gray-300'
+                  }`}
                 />
                 <ErrorMessage
                   name="fullName"
@@ -95,10 +85,11 @@ export default function CompanyInfoForm() {
                   name="email"
                   type="email"
                   placeholder="your.email@example.com"
-                  className={`w-full px-4 py-3.5 border rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.email && touched.email
-                      ? "border-red-300"
-                      : "border-gray-300"
-                    }`}
+                  className={`w-full px-4 py-3.5 border rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                    errors.email && touched.email
+                      ? 'border-red-300'
+                      : 'border-gray-300'
+                  }`}
                 />
                 <ErrorMessage
                   name="email"
@@ -122,10 +113,11 @@ export default function CompanyInfoForm() {
                     name="phoneNumber"
                     type="tel"
                     placeholder="50 123 4567"
-                    className={`flex-1 px-4 py-3.5 border rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.phoneNumber && touched.phoneNumber
-                        ? "border-red-300"
-                        : "border-gray-300"
-                      }`}
+                    className={`flex-1 px-4 py-3.5 border rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                      errors.phoneNumber && touched.phoneNumber
+                        ? 'border-red-300'
+                        : 'border-gray-300'
+                    }`}
                   />
                 </div>
                 <ErrorMessage
@@ -150,7 +142,10 @@ export default function CompanyInfoForm() {
 
             {/* Info Box */}
             <div className="bg-teal-50 border border-teal-200 rounded-lg p-4 flex items-start">
-              <ShieldCheck size={16} className="text-teal-700 mt-1 flex-shrink-0" />
+              <ShieldCheck
+                size={16}
+                className="text-teal-700 mt-1 flex-shrink-0"
+              />
               <div className="ml-3">
                 <p className="text-sm font-medium text-teal-900">
                   Your information is secure
@@ -164,7 +159,8 @@ export default function CompanyInfoForm() {
               <Button
                 className="text-white px-10 py-5 cursor-pointer"
                 style={{
-                  background: "linear-gradient(90deg, #00A0D2 10.38%, #05DC82 100%)",
+                  background:
+                    'linear-gradient(90deg, #00A0D2 10.38%, #05DC82 100%)',
                 }}
               >
                 Next Page
