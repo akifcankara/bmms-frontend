@@ -18,7 +18,7 @@ export default function SuccessModal({ isOpen, onClose }: SuccessModalProps) {
 
   const handleGoToDashboard = () => {
     onClose();
-    router.push('/');
+    router.push('/pro-services');
   };
 
   return (

@@ -1,11 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import axiosInstance from '@/lib/axios';
 
-export function useKYCApplications() {
+export function useKYCApplications(query?: string) {
   return useQuery({
-    queryKey: ['kyc-applications'],
+    queryKey: ['kyc-applications', query],
+    refetchOnMount: true,
     queryFn: async () => {
-      const response = await axiosInstance.get('/kyc/applications');
+      const params = query ? { query } : {};
+      const response = await axiosInstance.get('/kyc/applications', { params });
       return response.data;
     },
   });

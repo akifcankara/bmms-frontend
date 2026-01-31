@@ -25,10 +25,17 @@ const TOTAL_STEPS = 6;
 export default function KYCFormPage() {
   const currentStep = useKYCFormStore((state) => state.currentStep);
   const fillRandomData = useKYCFormStore((state) => state.fillRandomData);
+  const resetForm = useKYCFormStore((state) => state.resetForm);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [currentStep]);
+
+  useEffect(() => {
+    return () => {
+      resetForm();
+    };
+  }, [resetForm]);
 
   const steps = KYC_STEPS.map((step, index) => ({
     ...step,

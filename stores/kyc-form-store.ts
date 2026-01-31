@@ -75,6 +75,7 @@ interface KYCFormState {
     data: KYCFormState['formData'][K]
   ) => void;
   fillRandomData: () => void;
+  resetForm: () => void;
 }
 
 export const useKYCFormStore = create<KYCFormState>((set) => ({
@@ -264,4 +265,62 @@ export const useKYCFormStore = create<KYCFormState>((set) => ({
         },
       };
     }),
+  resetForm: () =>
+    set(() => ({
+      currentStep: 0,
+      formData: {
+        companyInfo: {
+          fullName: '',
+          email: '',
+          phoneNumber: '',
+          currentLocation: '',
+        },
+        businessSetup: {
+          companySetupType: '',
+          firstChoiceName: '',
+          secondChoiceName: '',
+          thirdChoiceName: '',
+          preferredJurisdiction: '',
+          specificLocation: '',
+          expectedTimeline: '',
+          primaryBusinessActivity: '',
+          industrySector: '',
+          additionalActivities: '',
+          licenseTypes: [],
+          localRevenue: '',
+          expectedAnnualRevenue: '',
+        },
+        ownership: {
+          ownershipType: '',
+          shareCapital: '',
+          numberOfShareholders: '',
+          shareholders: [],
+          generalManager: '',
+          director: '',
+          ubo: '',
+          hasLocalSponsor: '',
+        },
+        visaPro: {
+          totalVisasRequired: '',
+          visaTypes: [],
+          proServices: [],
+        },
+        bankingCompliance: {
+          requireBankSupport: '',
+          bankingServices: [],
+          preferredBank: '',
+          sourceOfFunds: '',
+          transactionVolume: '',
+          countriesOfOperation: '',
+          clientType: '',
+          additionalServices: [],
+          monthlyBudget: '',
+        },
+        confirmation: {
+          confirmAccuracy: false,
+          consentContact: false,
+          agreeTerms: false,
+        },
+      },
+    })),
 }));

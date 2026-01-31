@@ -12,7 +12,7 @@ import ConfirmationCheckboxesSection from './confirmation-checkboxes-section';
 import SuccessModal from './success-modal';
 
 export default function ConfirmationSummaryForm() {
-  const { formData, setFormData, prevStep } = useKYCFormStore();
+  const { formData, setFormData, prevStep, resetForm } = useKYCFormStore();
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const { mutate: submitKYC, isPending, isError, isSuccess } = useSubmitKYC();
 
@@ -123,7 +123,10 @@ export default function ConfirmationSummaryForm() {
       {isSuccess && (
         <SuccessModal
           isOpen={showSuccessModal}
-          onClose={() => setShowSuccessModal(false)}
+          onClose={() => {
+            setShowSuccessModal(false);
+            resetForm();
+          }}
         />
       )}
     </>

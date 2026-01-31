@@ -1,12 +1,19 @@
 'use client';
 
 import { Button } from '../ui/button';
-import { useKYCApplications } from '@/hooks/use-kyc-applications';
 import { Skeleton } from '../ui/skeleton';
 
-export default function ProServicesTable() {
-  const { data, isLoading, isError } = useKYCApplications();
+interface ProServicesTableProps {
+  data: any;
+  isLoading: boolean;
+  isError: boolean;
+}
 
+export default function ProServicesTable({
+  data,
+  isLoading,
+  isError,
+}: ProServicesTableProps) {
   if (isLoading) {
     return (
       <div className="w-full rounded-b-lg border bg-card/60 shadow-sm overflow-hidden">
@@ -65,6 +72,26 @@ export default function ProServicesTable() {
     return (
       <div className="w-full rounded-b-lg border bg-card/60 shadow-sm overflow-hidden p-8 text-center">
         <p className="text-red-600">Failed to load applications</p>
+      </div>
+    );
+  }
+
+  if (!isLoading && (!data || data.length === 0)) {
+    return (
+      <div className="w-full rounded-b-lg border bg-card/60 shadow-sm overflow-hidden p-12 text-center">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center">
+            <span className="text-3xl">📋</span>
+          </div>
+          <div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-1">
+              No applications found
+            </h3>
+            <p className="text-sm text-gray-500">
+              No KYC applications match your search criteria
+            </p>
+          </div>
+        </div>
       </div>
     );
   }
