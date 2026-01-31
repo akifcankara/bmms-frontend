@@ -78,10 +78,10 @@ export default function OwnershipForm() {
     >
       {({ errors, touched, values, setFieldValue }) => (
         <Form>
-          <div className="bg-white border border-gray-200 rounded-2xl shadow-sm p-8">
+          <div className="bg-white border border-gray-200 rounded-2xl shadow-sm p-2 md:p-8">
             {/* Header */}
-            <div className="flex items-start justify-between mb-6">
-              <div className="flex items-center">
+            <div className="flex flex-wrap gap-3 items-start justify-between mb-6">
+              <div className="flex flex-wrap gap-3 items-center">
                 <div
                   className="w-14 h-14 rounded-xl flex items-center justify-center"
                   style={{
@@ -91,7 +91,7 @@ export default function OwnershipForm() {
                 >
                   <Users size={20} className="text-white" />
                 </div>
-                <div className="ml-4">
+                <div>
                   <h2 className="text-2xl font-bold text-gray-900">
                     Ownership, Management & KYC
                   </h2>

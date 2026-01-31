@@ -43,7 +43,7 @@ export default function OwnershipBasicInfoSection({
         <label className="block text-sm font-semibold text-gray-700 mb-3">
           Ownership Type <span className="text-red-500">*</span>
         </label>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {OWNERSHIP_TYPES.map((type) => {
             const Icon = type.icon;
             return (

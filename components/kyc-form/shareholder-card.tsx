@@ -38,14 +38,14 @@ export default function ShareholderCard({
 }: ShareholderCardProps) {
   return (
     <div
-      className="border-2 border-indigo-200 rounded-xl p-6"
+      className="border-2 border-indigo-200 rounded-xl p-3 md:p-6"
       style={{
         backgroundImage:
           'linear-gradient(153.595deg, rgb(238, 242, 255) 0%, rgb(255, 255, 255) 100%)',
       }}
     >
       {/* Shareholder Header */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex flex-wrap gap-2 items-center justify-between mb-6">
         <div className="flex items-center">
           <div className="w-12 h-12 rounded-full bg-indigo-600 flex items-center justify-center">
             <span className="text-white font-bold text-lg">{index + 1}</span>
@@ -71,7 +71,7 @@ export default function ShareholderCard({
       </div>
 
       {/* Row 1: Full Name, Nationality */}
-      <div className="grid grid-cols-2 gap-4 mb-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
         <div>
           <label className="block text-sm font-semibold text-gray-700 mb-2">
             Full Name <span className="text-red-500">*</span>
@@ -116,19 +116,19 @@ export default function ShareholderCard({
       </div>
 
       {/* Row 2: Phone Number, Address */}
-      <div className="grid grid-cols-2 gap-4 mb-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
         <div>
           <label className="block text-sm font-semibold text-gray-700 mb-2">
             Phone Number <span className="text-red-500">*</span>
           </label>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <input
               type="text"
               value={shareholder.phoneCode}
               onChange={(e) =>
                 onUpdate(shareholder.id, 'phoneCode', e.target.value)
               }
-              className="w-[137px] px-4 py-3 border border-gray-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="max-w-[137px] px-4 py-3 border border-gray-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
             <input
               type="text"
@@ -137,7 +137,7 @@ export default function ShareholderCard({
               onChange={(e) =>
                 onUpdate(shareholder.id, 'phoneNumber', e.target.value)
               }
-              className="flex-1 px-4 py-3 border border-gray-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="flex-1 px-1 py-3 border border-gray-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
           </div>
         </div>
@@ -158,7 +158,7 @@ export default function ShareholderCard({
       </div>
 
       {/* Row 3: Ownership %, Passport Number */}
-      <div className="grid grid-cols-2 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
         <div>
           <label className="block text-sm font-semibold text-gray-700 mb-2">
             Ownership Percentage <span className="text-red-500">*</span>
@@ -191,13 +191,13 @@ export default function ShareholderCard({
 
       {/* KYC Documents */}
       <div className="border-t border-indigo-200 pt-6">
-        <div className="flex items-center mb-4">
+        <div className="flex flex-wrap gap-3 items-center mb-4">
           <ShieldCheck size={14} className="text-gray-700 mr-2" />
           <h4 className="text-sm font-bold text-gray-900">
             KYC Documents for this Shareholder
           </h4>
         </div>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {/* Passport Copy */}
           <div>
             <label className="block text-xs font-semibold text-gray-700 mb-2">

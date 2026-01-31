@@ -15,10 +15,10 @@ export default function CompanyInfoForm() {
   };
 
   return (
-    <div className="bg-white border border-gray-200 rounded-2xl shadow-sm p-8">
+    <div className="bg-white border border-gray-200 rounded-2xl shadow-sm p-2 md:p-8">
       {/* Header */}
       <div className="flex items-start justify-between mb-6">
-        <div className="flex items-center">
+        <div className="flex flex-wrap gap-2 items-center">
           <div
             className="w-14 h-14 rounded-xl flex items-center justify-center"
             style={{
@@ -28,7 +28,7 @@ export default function CompanyInfoForm() {
           >
             <Building2 size={20} className="text-white" />
           </div>
-          <div className="ml-4">
+          <div>
             <h2 className="text-2xl font-bold text-gray-900">
               Company & Contact Information
             </h2>
@@ -55,7 +55,7 @@ export default function CompanyInfoForm() {
         {({ errors, touched }) => (
           <Form className="space-y-6">
             {/* Row 1: Full Name & Email */}
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
                   Full Name <span className="text-red-500">*</span>
@@ -100,12 +100,12 @@ export default function CompanyInfoForm() {
             </div>
 
             {/* Row 2: Phone Number & Current Location */}
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
                   Phone Number <span className="text-red-500">*</span>
                 </label>
-                <div className="flex gap-2">
+                <div className="flex flex-wrap gap-2">
                   <div className="w-32 px-5 py-3.5 border border-gray-300 rounded-lg bg-white">
                     <span className="text-base text-black">+971</span>
                   </div>

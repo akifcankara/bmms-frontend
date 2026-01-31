@@ -73,10 +73,10 @@ export default function BusinessActivitySection({
   setFieldValue,
 }: BusinessActivitySectionProps) {
   return (
-    <div className="bg-white border border-gray-200 rounded-2xl shadow-sm p-8 mt-6">
+    <div className="bg-white border border-gray-200 rounded-2xl shadow-sm p-2 md:p-8 mt-6">
       {/* Header */}
-      <div className="flex items-start justify-between mb-6">
-        <div className="flex items-center">
+      <div className="flex flex-wrap gap-2 items-start justify-between mb-6">
+        <div className="flex flex-wrap gap-2 items-center">
           <div
             className="w-14 h-14 rounded-xl flex items-center justify-center"
             style={{
@@ -86,7 +86,7 @@ export default function BusinessActivitySection({
           >
             <Briefcase size={20} className="text-white" />
           </div>
-          <div className="ml-4">
+          <div>
             <h2 className="text-2xl font-bold text-gray-900">
               Business Activity & Revenue
             </h2>
@@ -180,7 +180,7 @@ export default function BusinessActivitySection({
           <label className="block text-sm font-semibold text-gray-700 mb-3">
             License Type Required
           </label>
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {LICENSE_TYPES.map((license) => {
               const Icon = license.icon;
               const isChecked = values.licenseTypes?.includes(license.value);
@@ -229,7 +229,7 @@ export default function BusinessActivitySection({
               Will the company generate revenue locally?{' '}
               <span className="text-red-500">*</span>
             </label>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {LOCAL_REVENUE_OPTIONS.map((option) => (
                 <label
                   key={option.value}

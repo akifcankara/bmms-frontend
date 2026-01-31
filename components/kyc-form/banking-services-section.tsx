@@ -65,7 +65,7 @@ export default function BankingServicesSection({
     <div className="bg-white border border-gray-200 rounded-2xl shadow-sm p-4 sm:p-6 md:p-8 w-full">
       {/* Header */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-4">
-        <div className="flex items-center">
+        <div className="flex flex-wrap gap-3 items-center">
           <div
             className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center"
             style={{
@@ -75,7 +75,7 @@ export default function BankingServicesSection({
           >
             <Building2 size={20} className="text-white" />
           </div>
-          <div className="ml-4">
+          <div>
             <h2 className="text-2xl font-bold text-gray-900">
               Banking &amp; Compliance Information
             </h2>

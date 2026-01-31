@@ -31,7 +31,7 @@ export default function ManagementRolesSection({
         <h3 className="text-lg font-bold text-gray-900">Management Roles</h3>
       </div>
 
-      <div className="grid grid-cols-2 gap-6 mb-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
         <div>
           <label className="block text-sm font-semibold text-gray-700 mb-3">
             General Manager <span className="text-red-500">*</span>
