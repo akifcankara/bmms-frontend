@@ -30,19 +30,21 @@ export default function Header(props: HeaderProps) {
 
   return (
     <header className="sticky top-0 z-50 flex items-center justify-between gap-5 bg-white p-5 px-10 border-b-1 border-gray-200">
-      <div className="flex items-center gap-3">
-        <Button
-          aria-label={menuLabel}
-          type="button"
-          size="icon"
-          variant="ghost"
-          className={MENU_BUTTON_CLASS_NAME}
-          onClick={props.onMenuToggle}
-        >
-          <Menu />
-        </Button>
-        <Image src={'/logo.jpg'} alt="BMMS" width={125} height={42} />
-      </div>
+      <Link href={'/'} className="cursor-pointer">
+        <div className="flex items-center gap-3">
+          <Button
+            aria-label={menuLabel}
+            type="button"
+            size="icon"
+            variant="ghost"
+            className={MENU_BUTTON_CLASS_NAME}
+            onClick={props.onMenuToggle}
+          >
+            <Menu />
+          </Button>
+          <Image src={'/logo.jpg'} alt="BMMS" width={125} height={42} />
+        </div>
+      </Link>
       <div className={HEADER_ACTIONS_CLASS_NAME}>
         <div className="flex flex-col gap-2">
           <h1 className="text-2xl font-semibold">{title}</h1>
