@@ -40,7 +40,7 @@ export default function ComplianceSection({
   setFieldValue,
 }: ComplianceSectionProps) {
   return (
-    <div className="bg-white border border-gray-200 rounded-2xl shadow-sm p-8 mt-6 w-full min-w-full">
+    <div className="bg-white border border-gray-200 rounded-2xl shadow-sm p-4 sm:p-6 md:p-8 mt-6 w-full">
       {/* Divider with heading */}
       <div className="border-t border-gray-200 pt-6 mb-6">
         <div className="flex items-center mb-6">
@@ -52,7 +52,7 @@ export default function ComplianceSection({
 
         <div className="space-y-6">
           {/* Source of Funds & Transaction Volume */}
-          <div className="grid grid-cols-2 gap-6">
+          <div className="flex flex-col gap-4">
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
                 Source of Funds <span className="text-red-500">*</span>
@@ -132,7 +132,7 @@ export default function ComplianceSection({
             <label className="block text-sm font-semibold text-gray-700 mb-3">
               Client Type <span className="text-red-500">*</span>
             </label>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="flex flex-col gap-4">
               {CLIENT_TYPES.map((type) => {
                 const isSelected = values.clientType === type.value;
                 return (

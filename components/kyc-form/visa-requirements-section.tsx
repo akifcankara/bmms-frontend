@@ -48,12 +48,12 @@ export default function VisaRequirementsSection({
   };
 
   return (
-    <div className="bg-white border border-gray-200 rounded-2xl shadow-sm p-8 w-full min-w-full">
+    <div className="bg-white border border-gray-200 rounded-2xl shadow-sm p-4 sm:p-6 md:p-8 w-full">
       {/* Header */}
-      <div className="flex items-start justify-between mb-6">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-4">
         <div className="flex items-center">
           <div
-            className="w-14 h-14 rounded-xl flex items-center justify-center"
+            className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center"
             style={{
               backgroundImage:
                 'linear-gradient(135deg, rgb(34, 197, 94) 0%, rgb(22, 163, 74) 100%)',

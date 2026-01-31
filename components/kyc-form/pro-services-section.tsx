@@ -56,7 +56,7 @@ export default function ProServicesSection({
   };
 
   return (
-    <div className="bg-white border border-gray-200 rounded-2xl shadow-sm p-8 mt-6 w-full min-w-full">
+    <div className="bg-white border border-gray-200 rounded-2xl shadow-sm p-4 sm:p-6 md:p-8 mt-6 w-full">
       <div className="space-y-6">
         <div>
           <label className="block text-sm font-semibold text-gray-700 mb-3">

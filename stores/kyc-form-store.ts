@@ -62,6 +62,11 @@ interface KYCFormState {
       additionalServices: string[];
       monthlyBudget: string;
     };
+    confirmation: {
+      confirmAccuracy: boolean;
+      consentContact: boolean;
+      agreeTerms: boolean;
+    };
   };
   nextStep: () => void;
   prevStep: () => void;
@@ -120,6 +125,11 @@ export const useKYCFormStore = create<KYCFormState>((set) => ({
       clientType: '',
       additionalServices: [],
       monthlyBudget: '',
+    },
+    confirmation: {
+      confirmAccuracy: false,
+      consentContact: false,
+      agreeTerms: false,
     },
   },
   nextStep: () =>

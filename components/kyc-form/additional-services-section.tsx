@@ -74,14 +74,14 @@ export default function AdditionalServicesSection({
   };
 
   return (
-    <div className="bg-white border border-gray-200 rounded-2xl shadow-sm p-8 mt-6 w-full min-w-full">
+    <div className="bg-white border border-gray-200 rounded-2xl shadow-sm p-4 sm:p-6 md:p-8 mt-6 w-full">
       <div className="space-y-6">
         {/* Additional Services */}
         <div>
           <label className="block text-sm font-semibold text-gray-700 mb-3">
             Additional Services
           </label>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="flex flex-col gap-3">
             {ADDITIONAL_SERVICES.map((service) => {
               const isSelected = values.additionalServices?.includes(
                 service.value
