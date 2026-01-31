@@ -149,74 +149,119 @@ export const useKYCFormStore = create<KYCFormState>((set) => ({
       },
     })),
   fillRandomData: () =>
-    set(() => ({
-      formData: {
-        companyInfo: {
-          fullName: 'John Doe',
-          email: 'john.doe@example.com',
-          phoneNumber: '501234567',
-          currentLocation: 'Dubai, UAE',
+    set(() => {
+      const names = [
+        'John Doe',
+        'Jane Smith',
+        'Michael Johnson',
+        'Sarah Williams',
+        'David Brown',
+      ];
+      const companies = [
+        'Tech Solutions',
+        'Digital Innovations',
+        'Smart Systems',
+        'Global Services',
+        'Future Technologies',
+      ];
+      const jurisdictions = ['dubai', 'saudi', 'abudhabi'];
+      const sectors = [
+        'technology',
+        'finance',
+        'healthcare',
+        'retail',
+        'manufacturing',
+      ];
+
+      const randomName = names[Math.floor(Math.random() * names.length)];
+      const randomCompany =
+        companies[Math.floor(Math.random() * companies.length)];
+      const randomNum = Math.floor(Math.random() * 9999);
+
+      return {
+        formData: {
+          companyInfo: {
+            fullName: randomName,
+            email: `${randomName.toLowerCase().replace(' ', '.')}${randomNum}@example.com`,
+            phoneNumber: `50${Math.floor(Math.random() * 9999999)}`,
+            currentLocation: 'Dubai, UAE',
+          },
+          businessSetup: {
+            companySetupType: 'new',
+            firstChoiceName: `${randomCompany} LLC`,
+            secondChoiceName: `${randomCompany} International LLC`,
+            thirdChoiceName: `${randomCompany} Global LLC`,
+            preferredJurisdiction:
+              jurisdictions[Math.floor(Math.random() * jurisdictions.length)],
+            specificLocation: 'Dubai Media City',
+            expectedTimeline: ['1month', '2months', '3months'][
+              Math.floor(Math.random() * 3)
+            ],
+            primaryBusinessActivity: 'Software Development',
+            industrySector: sectors[Math.floor(Math.random() * sectors.length)],
+            additionalActivities: 'IT Consulting',
+            licenseTypes: ['professional'],
+            localRevenue: ['yes', 'no'][Math.floor(Math.random() * 2)],
+            expectedAnnualRevenue: ['0-100k', '100k-500k', '500k-1m'][
+              Math.floor(Math.random() * 3)
+            ],
+          },
+          ownership: {
+            ownershipType: 'sole-proprietorship',
+            shareCapital: `${Math.floor(Math.random() * 100000) + 10000}`,
+            numberOfShareholders: '1',
+            shareholders: [
+              {
+                id: '1',
+                fullName: randomName,
+                nationality: ['uae', 'saudi', 'egypt', 'jordan'][
+                  Math.floor(Math.random() * 4)
+                ],
+                phoneCode: '+971',
+                phoneNumber: `50${Math.floor(Math.random() * 9999999)}`,
+                address: 'Dubai, UAE',
+                ownershipPercentage: '100',
+                passportNumber: `A${Math.floor(Math.random() * 9999999)}`,
+                passportCopy: null,
+                emiratesId: null,
+                residenceVisa: null,
+              },
+            ],
+            generalManager: '1',
+            director: '1',
+            ubo: '1',
+            hasLocalSponsor: ['yes', 'no'][Math.floor(Math.random() * 2)],
+          },
+          visaPro: {
+            totalVisasRequired: `${Math.floor(Math.random() * 5) + 1}`,
+            visaTypes: ['investor'],
+            proServices: ['visaProcessing'],
+          },
+          bankingCompliance: {
+            requireBankSupport: 'yes',
+            bankingServices: ['businessAccount'],
+            preferredBank: ['emiratesNbd', 'adcb', 'fab'][
+              Math.floor(Math.random() * 3)
+            ],
+            sourceOfFunds: ['personalSavings', 'investment', 'businessIncome'][
+              Math.floor(Math.random() * 3)
+            ],
+            transactionVolume: ['0-50k', '50k-100k', '100k-500k'][
+              Math.floor(Math.random() * 3)
+            ],
+            countriesOfOperation: 'UAE, Saudi Arabia',
+            clientType: ['b2b', 'b2c', 'both'][Math.floor(Math.random() * 3)],
+            additionalServices: ['trademark'],
+            monthlyBudget: ['0-5k', '5k-10k', '10k-20k'][
+              Math.floor(Math.random() * 3)
+            ],
+          },
+          confirmation: {
+            confirmAccuracy: true,
+            consentContact: true,
+            agreeTerms: true,
+          },
         },
-        businessSetup: {
-          companySetupType: 'new',
-          firstChoiceName: 'Tech Solutions LLC',
-          secondChoiceName: 'Digital Innovations LLC',
-          thirdChoiceName: 'Smart Systems LLC',
-          preferredJurisdiction: 'dubai',
-          specificLocation: 'Dubai Media City',
-          expectedTimeline: '1month',
-          primaryBusinessActivity: 'Software Development',
-          industrySector: 'technology',
-          additionalActivities: 'IT Consulting',
-          licenseTypes: ['professional'],
-          localRevenue: 'no',
-          expectedAnnualRevenue: '100k-500k',
-        },
-        ownership: {
-          ownershipType: 'sole-proprietorship',
-          shareCapital: '50000',
-          numberOfShareholders: '1',
-          shareholders: [
-            {
-              id: '1',
-              fullName: 'John Doe',
-              nationality: 'uae',
-              phoneCode: '+971',
-              phoneNumber: '501234567',
-              address: 'Dubai, UAE',
-              ownershipPercentage: '100',
-              passportNumber: 'A1234567',
-              passportCopy: null,
-              emiratesId: null,
-              residenceVisa: null,
-            },
-          ],
-          generalManager: '1',
-          director: '1',
-          ubo: '1',
-          hasLocalSponsor: 'no',
-        },
-        visaPro: {
-          totalVisasRequired: '2',
-          visaTypes: ['investor'],
-          proServices: ['visaProcessing'],
-        },
-        bankingCompliance: {
-          requireBankSupport: 'yes',
-          bankingServices: ['businessAccount'],
-          preferredBank: 'emiratesNbd',
-          sourceOfFunds: 'personalSavings',
-          transactionVolume: '50k-100k',
-          countriesOfOperation: 'UAE, Saudi Arabia',
-          clientType: 'b2b',
-          additionalServices: ['trademark'],
-          monthlyBudget: '5k-10k',
-        },
-        confirmation: {
-          confirmAccuracy: true,
-          consentContact: true,
-          agreeTerms: true,
-        },
-      },
-    })),
+      };
+    }),
 }));
