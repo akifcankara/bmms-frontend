@@ -51,6 +51,17 @@ interface KYCFormState {
       visaTypes: string[];
       proServices: string[];
     };
+    bankingCompliance: {
+      requireBankSupport: string;
+      bankingServices: string[];
+      preferredBank: string;
+      sourceOfFunds: string;
+      transactionVolume: string;
+      countriesOfOperation: string;
+      clientType: string;
+      additionalServices: string[];
+      monthlyBudget: string;
+    };
   };
   nextStep: () => void;
   prevStep: () => void;
@@ -98,6 +109,17 @@ export const useKYCFormStore = create<KYCFormState>((set) => ({
       totalVisasRequired: '',
       visaTypes: [],
       proServices: [],
+    },
+    bankingCompliance: {
+      requireBankSupport: '',
+      bankingServices: [],
+      preferredBank: '',
+      sourceOfFunds: '',
+      transactionVolume: '',
+      countriesOfOperation: '',
+      clientType: '',
+      additionalServices: [],
+      monthlyBudget: '',
     },
   },
   nextStep: () =>

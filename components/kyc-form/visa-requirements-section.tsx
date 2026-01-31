@@ -48,7 +48,7 @@ export default function VisaRequirementsSection({
   };
 
   return (
-    <div className="bg-white border border-gray-200 rounded-2xl shadow-sm p-8">
+    <div className="bg-white border border-gray-200 rounded-2xl shadow-sm p-8 w-full min-w-full">
       {/* Header */}
       <div className="flex items-start justify-between mb-6">
         <div className="flex items-center">

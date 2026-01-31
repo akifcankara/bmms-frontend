@@ -3,37 +3,48 @@
 import { Formik, Form } from 'formik';
 import { ArrowRight, ChevronLeft } from 'lucide-react';
 import { Button } from '../ui/button';
-import { validationSchema } from '@/schemas/kyc/visa-pro.schema';
+import { validationSchema } from '@/schemas/kyc/banking-compliance.schema';
 import { useKYCFormStore } from '@/stores/kyc-form-store';
-import VisaRequirementsSection from './visa-requirements-section';
-import ProServicesSection from './pro-services-section';
+import BankingServicesSection from './banking-services-section';
+import ComplianceSection from './compliance-section';
+import AdditionalServicesSection from './additional-services-section';
 
-export default function VisaProRequirementsForm() {
+export default function BankingComplianceForm() {
   const { formData, setFormData, nextStep, prevStep } = useKYCFormStore();
 
-  const handleSubmit = (values: typeof formData.visaPro) => {
-    setFormData('visaPro', values);
+  const handleSubmit = (values: typeof formData.bankingCompliance) => {
+    setFormData('bankingCompliance', values);
     nextStep();
   };
 
   return (
     <>
       <Formik
-        initialValues={formData.visaPro}
+        initialValues={formData.bankingCompliance}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
         enableReinitialize
       >
         {({ errors, touched, values, setFieldValue }) => (
           <Form className="w-full md:min-w-[850px]">
-            <VisaRequirementsSection
+            <BankingServicesSection
               errors={errors}
               touched={touched}
               values={values}
               setFieldValue={setFieldValue}
             />
 
-            <ProServicesSection values={values} setFieldValue={setFieldValue} />
+            <ComplianceSection
+              errors={errors}
+              touched={touched}
+              values={values}
+              setFieldValue={setFieldValue}
+            />
+
+            <AdditionalServicesSection
+              values={values}
+              setFieldValue={setFieldValue}
+            />
 
             <div className="w-full flex items-center justify-between mt-6">
               <Button
