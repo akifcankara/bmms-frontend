@@ -14,7 +14,7 @@ import SuccessModal from './success-modal';
 export default function ConfirmationSummaryForm() {
   const { formData, setFormData, prevStep } = useKYCFormStore();
   const [showSuccessModal, setShowSuccessModal] = useState(false);
-  const { mutate: submitKYC, isPending, isError } = useSubmitKYC();
+  const { mutate: submitKYC, isPending, isError, isSuccess } = useSubmitKYC();
 
   const handleSubmit = (values: typeof formData.confirmation) => {
     setFormData('confirmation', values);
@@ -120,10 +120,12 @@ export default function ConfirmationSummaryForm() {
         </div>
       )}
 
-      <SuccessModal
-        isOpen={showSuccessModal}
-        onClose={() => setShowSuccessModal(false)}
-      />
+      {isSuccess && (
+        <SuccessModal
+          isOpen={showSuccessModal}
+          onClose={() => setShowSuccessModal(false)}
+        />
+      )}
     </>
   );
 }
