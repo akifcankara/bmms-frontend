@@ -74,6 +74,7 @@ interface KYCFormState {
     step: K,
     data: KYCFormState['formData'][K]
   ) => void;
+  fillRandomData: () => void;
 }
 
 export const useKYCFormStore = create<KYCFormState>((set) => ({
@@ -145,6 +146,77 @@ export const useKYCFormStore = create<KYCFormState>((set) => ({
       formData: {
         ...state.formData,
         [step]: data,
+      },
+    })),
+  fillRandomData: () =>
+    set(() => ({
+      formData: {
+        companyInfo: {
+          fullName: 'John Doe',
+          email: 'john.doe@example.com',
+          phoneNumber: '501234567',
+          currentLocation: 'Dubai, UAE',
+        },
+        businessSetup: {
+          companySetupType: 'new',
+          firstChoiceName: 'Tech Solutions LLC',
+          secondChoiceName: 'Digital Innovations LLC',
+          thirdChoiceName: 'Smart Systems LLC',
+          preferredJurisdiction: 'dubai',
+          specificLocation: 'Dubai Media City',
+          expectedTimeline: '1month',
+          primaryBusinessActivity: 'Software Development',
+          industrySector: 'technology',
+          additionalActivities: 'IT Consulting',
+          licenseTypes: ['professional'],
+          localRevenue: 'no',
+          expectedAnnualRevenue: '100k-500k',
+        },
+        ownership: {
+          ownershipType: 'sole-proprietorship',
+          shareCapital: '50000',
+          numberOfShareholders: '1',
+          shareholders: [
+            {
+              id: '1',
+              fullName: 'John Doe',
+              nationality: 'uae',
+              phoneCode: '+971',
+              phoneNumber: '501234567',
+              address: 'Dubai, UAE',
+              ownershipPercentage: '100',
+              passportNumber: 'A1234567',
+              passportCopy: null,
+              emiratesId: null,
+              residenceVisa: null,
+            },
+          ],
+          generalManager: '1',
+          director: '1',
+          ubo: '1',
+          hasLocalSponsor: 'no',
+        },
+        visaPro: {
+          totalVisasRequired: '2',
+          visaTypes: ['investor'],
+          proServices: ['visaProcessing'],
+        },
+        bankingCompliance: {
+          requireBankSupport: 'yes',
+          bankingServices: ['businessAccount'],
+          preferredBank: 'emiratesNbd',
+          sourceOfFunds: 'personalSavings',
+          transactionVolume: '50k-100k',
+          countriesOfOperation: 'UAE, Saudi Arabia',
+          clientType: 'b2b',
+          additionalServices: ['trademark'],
+          monthlyBudget: '5k-10k',
+        },
+        confirmation: {
+          confirmAccuracy: true,
+          consentContact: true,
+          agreeTerms: true,
+        },
       },
     })),
 }));
