@@ -46,6 +46,11 @@ interface KYCFormState {
       ubo: string;
       hasLocalSponsor: string;
     };
+    visaPro: {
+      totalVisasRequired: string;
+      visaTypes: string[];
+      proServices: string[];
+    };
   };
   nextStep: () => void;
   prevStep: () => void;
@@ -88,6 +93,11 @@ export const useKYCFormStore = create<KYCFormState>((set) => ({
       director: '',
       ubo: '',
       hasLocalSponsor: '',
+    },
+    visaPro: {
+      totalVisasRequired: '',
+      visaTypes: [],
+      proServices: [],
     },
   },
   nextStep: () =>

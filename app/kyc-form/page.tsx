@@ -4,6 +4,7 @@ import FormShell from '@/components/common/form-shell';
 import CompanyInfoForm from '@/components/kyc-form/company-info-form';
 import BusinessSetupForm from '@/components/kyc-form/business-setup-form';
 import OwnershipForm from '@/components/kyc-form/ownership-form';
+import VisaProRequirementsForm from '@/components/kyc-form/visa-pro-requirements-form';
 import Indicator from '@/components/kyc-form/indicator';
 import { useKYCFormStore } from '@/stores/kyc-form-store';
 
@@ -41,6 +42,10 @@ export default function KYCFormPage() {
       return <OwnershipForm />;
     }
 
+    if (currentStep === 3) {
+      return <VisaProRequirementsForm />;
+    }
+
     return (
       <div className="bg-white border border-gray-200 rounded-2xl shadow-sm p-8">
         <h2 className="text-2xl font-bold text-gray-900">Coming Soon</h2>
@@ -53,7 +58,8 @@ export default function KYCFormPage() {
     <FormShell>
       <Indicator currentProgress={currentProgress} steps={steps} />
       <div className="max-w-[1280px] mx-auto px-20 py-8">
-        {renderCurrentForm()}
+        <VisaProRequirementsForm />
+        {/* {renderCurrentForm()} */}
       </div>
     </FormShell>
   );
