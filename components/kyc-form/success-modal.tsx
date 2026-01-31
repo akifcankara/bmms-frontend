@@ -1,5 +1,12 @@
 import { CheckCircle2, LayoutDashboard } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from '@/components/ui/dialog';
 
 interface SuccessModalProps {
   isOpen: boolean;
@@ -9,21 +16,20 @@ interface SuccessModalProps {
 export default function SuccessModal({ isOpen, onClose }: SuccessModalProps) {
   const router = useRouter();
 
-  if (!isOpen) return null;
-
   const handleGoToDashboard = () => {
     onClose();
-    router.push('/'); // TODO: Update with actual dashboard route
+    router.push('/');
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
-      <div
-        className="relative w-full max-w-4xl px-4 sm:px-8 py-8 sm:py-16 rounded-2xl shadow-2xl"
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent
+        className="max-w-4xl px-4 sm:px-8 py-8 sm:py-16 border-0"
         style={{
           backgroundImage:
             'linear-gradient(147.2deg, rgb(240, 253, 250) 0%, rgb(255, 255, 255) 50%, rgb(236, 254, 255) 100%)',
         }}
+        showCloseButton={false}
       >
         <div className="flex flex-col items-center gap-6 sm:gap-12">
           {/* Success Icon */}
@@ -42,15 +48,15 @@ export default function SuccessModal({ isOpen, onClose }: SuccessModalProps) {
           </div>
 
           {/* Content */}
-          <div className="flex flex-col items-center text-center space-y-4">
-            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-gray-900">
+          <DialogHeader className="flex flex-col items-center text-center space-y-4">
+            <DialogTitle className="text-2xl sm:text-4xl lg:text-5xl font-bold text-gray-900 text-center">
               Application Submitted Successfully!
-            </h1>
-            <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-2xl leading-relaxed px-4">
+            </DialogTitle>
+            <DialogDescription className="text-base text-center sm:text-lg lg:text-xl text-gray-600 max-w-2xl leading-relaxed px-4">
               Thank you for choosing Bridge. Your business setup application has
               been received and is now under review.
-            </p>
-          </div>
+            </DialogDescription>
+          </DialogHeader>
 
           {/* Button */}
           <button
@@ -65,7 +71,7 @@ export default function SuccessModal({ isOpen, onClose }: SuccessModalProps) {
             Go to Dashboard
           </button>
         </div>
-      </div>
-    </div>
+      </DialogContent>
+    </Dialog>
   );
 }
