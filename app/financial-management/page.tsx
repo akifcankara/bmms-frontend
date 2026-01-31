@@ -1,28 +1,34 @@
-"use client"
-import AppShell from "@/components/common/app-shell";
-import PaymentStatus from "@/components/financial-management/payment-status";
-import RecentTransactions from "@/components/financial-management/recent-transactions";
-import Stats from "@/components/financial-management/stats";
-import TopRevenueClients from "@/components/financial-management/top-revenue-clients";
-import { useBreadcrumb } from "@/store/breadcrumb";
-import { useEffect } from "react";
+'use client';
+import AppShell from '@/components/common/app-shell';
+import PaymentStatus from '@/components/financial-management/payment-status';
+import RecentTransactions from '@/components/financial-management/recent-transactions';
+import Stats from '@/components/financial-management/stats';
+import TopRevenueClients from '@/components/financial-management/top-revenue-clients';
+import { useBreadcrumb } from '@/store/breadcrumb';
+import { useEffect } from 'react';
 
 export default function FinancialManagement() {
+  const { setContent } = useBreadcrumb();
 
-    const { setContent } = useBreadcrumb();
+  useEffect(() => {
+    setContent(
+      'Financial Management',
+      'Track revenue, payments, invoices, and financial performance',
+      'New Client',
+      '/'
+    );
+  }, []);
 
-    useEffect(() => {
-        setContent('Financial Management', 'Track revenue, payments, invoices, and financial performance', 'New Client');
-    }, [])
-
-    return <AppShell>
-        <main className="flex flex-col gap-5">
-            <Stats />
-            <div className="flex flex-wrap gap-3">
-                <PaymentStatus />
-                <TopRevenueClients />
-            </div>
-            <RecentTransactions />
-        </main>
+  return (
+    <AppShell>
+      <main className="flex flex-col gap-5">
+        <Stats />
+        <div className="flex flex-wrap gap-3">
+          <PaymentStatus />
+          <TopRevenueClients />
+        </div>
+        <RecentTransactions />
+      </main>
     </AppShell>
+  );
 }

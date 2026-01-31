@@ -1,16 +1,28 @@
-import { create } from 'zustand'
+import { create } from 'zustand';
 
 type Store = {
-  title: string
-  subtitle: string
-  buttonText: string
+  title: string;
+  subtitle: string;
+  buttonText: string;
+  href: string;
 
-  setContent: (title: string, subtitle: string, buttonText: string) => void
-}
+  setContent: (
+    title: string,
+    subtitle: string,
+    buttonText: string,
+    href: string
+  ) => void;
+};
 
 export const useBreadcrumb = create<Store>()((set) => ({
-    title: 'Operations Dashboard',
-    subtitle: 'Manage clients, cases, and business operations',
-    buttonText: 'New Client',
-    setContent: (title: string, subtitle: string, buttonText) => set({ title, subtitle, buttonText }),
-}))
+  href: '',
+  title: 'Operations Dashboard',
+  subtitle: 'Manage clients, cases, and business operations',
+  buttonText: 'New Client',
+  setContent: (
+    title: string,
+    subtitle: string,
+    buttonText: string,
+    href: string
+  ) => set({ title, subtitle, buttonText, href }),
+}));

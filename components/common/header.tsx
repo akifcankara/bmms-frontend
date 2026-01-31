@@ -1,11 +1,12 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import { Menu } from "lucide-react";
-import { Button } from "../ui/button";
-import Avatar from "./avatar";
-import PlusIcon from "../icons/plus";
-import { useBreadcrumb } from "@/store/breadcrumb";
+import Image from 'next/image';
+import { Menu } from 'lucide-react';
+import { Button } from '../ui/button';
+import Avatar from './avatar';
+import PlusIcon from '../icons/plus';
+import { useBreadcrumb } from '@/store/breadcrumb';
+import Link from 'next/link';
 
 type HeaderProps = {
   onMenuToggle: () => void;
@@ -13,16 +14,15 @@ type HeaderProps = {
 };
 
 const MENU_BUTTON_LABELS = {
-  OPEN: "Open menu",
-  CLOSE: "Close menu",
+  OPEN: 'Open menu',
+  CLOSE: 'Close menu',
 };
-const MENU_BUTTON_CLASS_NAME = "md:hidden";
+const MENU_BUTTON_CLASS_NAME = 'md:hidden';
 const HEADER_ACTIONS_CLASS_NAME =
-  "hidden md:flex flex-wrap w-full items-center justify-between md:pl-[95px]";
+  'hidden md:flex flex-wrap w-full items-center justify-between md:pl-[95px]';
 
 export default function Header(props: HeaderProps) {
-
-  const { title, subtitle, buttonText } = useBreadcrumb();
+  const { title, subtitle, buttonText, href } = useBreadcrumb();
 
   const menuLabel = props.isSidebarOpen
     ? MENU_BUTTON_LABELS.CLOSE
@@ -41,24 +41,25 @@ export default function Header(props: HeaderProps) {
         >
           <Menu />
         </Button>
-        <Image src={"/logo.jpg"} alt="BMMS" width={125} height={42} />
+        <Image src={'/logo.jpg'} alt="BMMS" width={125} height={42} />
       </div>
       <div className={HEADER_ACTIONS_CLASS_NAME}>
         <div className="flex flex-col gap-2">
           <h1 className="text-2xl font-semibold">{title}</h1>
-          <p className="text-sm text-slate-500">
-            {subtitle}
-          </p>
+          <p className="text-sm text-slate-500">{subtitle}</p>
         </div>
         <div className="flex items-center gap-5">
-          <Button
-            className="text-white px-10 py-5 cursor-pointer"
-            style={{
-              background: "linear-gradient(90deg, #00A0D2 10.38%, #05DC82 100%)",
-            }}
-          >
-            <PlusIcon /> {buttonText}
-          </Button>
+          <Link href={href}>
+            <Button
+              className="text-white px-10 py-5 cursor-pointer"
+              style={{
+                background:
+                  'linear-gradient(90deg, #00A0D2 10.38%, #05DC82 100%)',
+              }}
+            >
+              <PlusIcon /> {buttonText}
+            </Button>
+          </Link>
           <Avatar />
         </div>
       </div>
