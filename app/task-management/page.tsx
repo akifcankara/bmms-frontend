@@ -1,21 +1,30 @@
-"use client"
-import { useEffect } from "react";
-import Table from "@/components/task-management/table";
-import Todo from "@/components/task-management/todo";
-import { useBreadcrumb } from "@/store/breadcrumb";
+'use client';
+import { useEffect } from 'react';
+import Table from '@/components/task-management/table';
+import Todo from '@/components/task-management/todo';
+import { useBreadcrumb } from '@/store/breadcrumb';
+import AppShell from '@/components/common/app-shell';
 
 export default function TaskManagement() {
+  const { setContent } = useBreadcrumb();
 
-    const { setContent } = useBreadcrumb();
+  useEffect(() => {
+    setContent(
+      'Task Managment',
+      'Organize and track all team tasks and assignments',
+      'New Client',
+      '/'
+    );
+  }, []);
 
-    useEffect(() => {
-        setContent('Task Managment', 'Organize and track all team tasks and assignments', 'New Client');
-    }, [])
-
-    return <main className="flex flex-col gap-4">
+  return (
+    <AppShell>
+      <main className="flex flex-col gap-4">
         <Todo />
         <div>
-            <Table />
+          <Table />
         </div>
-    </main>
+      </main>
+    </AppShell>
+  );
 }

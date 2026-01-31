@@ -21,7 +21,7 @@ const SAMPLE: Client[] = [
     { id: "c3", name: "Liam Wong", type: "Individual", module: "MENA Leaders", status: "Active", partner: 'Growth Consulting', lastUpdate: "1 day ago" },
 ]
 
-export default function ClientsTable({ data = SAMPLE }: { data?: Client[] }) {
+export default function Table({ data = SAMPLE }: { data?: Client[] }) {
     return (
         <div className="w-full rounded-lg border bg-card/60 shadow-sm overflow-hidden">
             <div className="overflow-x-auto">

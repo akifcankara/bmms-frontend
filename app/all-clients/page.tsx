@@ -1,22 +1,30 @@
-"use client";
-import ClientsTable from "@/components/all-clients/clients-table";
-import FilterTable from "@/components/all-clients/filter-table";
-import Stats from "@/components/all-clients/stats";
-import { useBreadcrumb } from "@/store/breadcrumb";
-import { useEffect } from "react";
+'use client';
+import Table from '@/components/all-clients/table';
+import Filter from '@/components/all-clients/filter';
+import Stats from '@/components/all-clients/stats';
+import AppShell from '@/components/common/app-shell';
+import { useBreadcrumb } from '@/store/breadcrumb';
+import { useEffect } from 'react';
 
-export default function AllClients(){
+export default function AllClients() {
+  const { setContent } = useBreadcrumb();
 
-      const { setContent } = useBreadcrumb();
-    
-      useEffect(() => {
-        setContent('All Clients', 'Manage and view all client accounts', 'New Client');
-      }, [])
-    
+  useEffect(() => {
+    setContent(
+      'All Clients',
+      'Manage and view all client accounts',
+      'New Client',
+      '/'
+    );
+  }, []);
 
-    return <div className="flex flex-col gap-4">
+  return (
+    <AppShell>
+      <div className="flex flex-col gap-4">
         <Stats />
-        <FilterTable />
-        <ClientsTable />
-    </div>
+        <Filter />
+        <Table />
+      </div>
+    </AppShell>
+  );
 }
