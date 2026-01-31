@@ -111,6 +111,45 @@ export default function SummarySection({ formData }: SummarySectionProps) {
               ))}
             </div>
 
+            {/* Shareholders Documents */}
+            {formData.ownership.shareholders &&
+              formData.ownership.shareholders.length > 0 && (
+                <div className="border-t border-teal-200 pt-5 mb-5">
+                  <h4 className="text-sm font-bold text-gray-900 mb-3">
+                    Shareholder Documents:
+                  </h4>
+                  {formData.ownership.shareholders.map(
+                    (shareholder: any, index: number) => (
+                      <div
+                        key={shareholder.id}
+                        className="bg-white border border-teal-200 rounded-lg p-3 mb-3"
+                      >
+                        <p className="text-xs font-semibold text-gray-700 mb-2">
+                          {shareholder.fullName || `Shareholder ${index + 1}`}
+                        </p>
+                        <div className="space-y-1">
+                          {shareholder.passportCopy && (
+                            <p className="text-xs text-gray-600">
+                              ✓ Passport: {shareholder.passportCopy.name}
+                            </p>
+                          )}
+                          {shareholder.emiratesId && (
+                            <p className="text-xs text-gray-600">
+                              ✓ Emirates ID: {shareholder.emiratesId.name}
+                            </p>
+                          )}
+                          {shareholder.residenceVisa && (
+                            <p className="text-xs text-gray-600">
+                              ✓ Residence Visa: {shareholder.residenceVisa.name}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    )
+                  )}
+                </div>
+              )}
+
             {/* Completeness Badge */}
             <div className="border-t border-teal-200 pt-5">
               <div className="flex items-center justify-between">

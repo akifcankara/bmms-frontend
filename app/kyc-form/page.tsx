@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import FormShell from '@/components/common/form-shell';
 import CompanyInfoForm from '@/components/kyc-form/company-info-form';
 import BusinessSetupForm from '@/components/kyc-form/business-setup-form';
@@ -23,6 +24,10 @@ const TOTAL_STEPS = 6;
 
 export default function KYCFormPage() {
   const currentStep = useKYCFormStore((state) => state.currentStep);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentStep]);
 
   const steps = KYC_STEPS.map((step, index) => ({
     ...step,

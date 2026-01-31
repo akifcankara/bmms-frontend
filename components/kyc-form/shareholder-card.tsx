@@ -203,13 +203,30 @@ export default function ShareholderCard({
             <label className="block text-xs font-semibold text-gray-700 mb-2">
               Passport Copy <span className="text-red-500">*</span>
             </label>
-            <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center cursor-pointer hover:border-gray-400 transition-colors">
+            <label
+              htmlFor={`passport-${shareholder.id}`}
+              className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center cursor-pointer hover:border-gray-400 transition-colors block"
+            >
               <Upload size={24} className="mx-auto text-gray-400 mb-2" />
-              <p className="text-xs font-medium text-gray-600">
-                Upload Passport
-              </p>
-              <p className="text-xs text-gray-400 mt-1">PDF, JPG, PNG</p>
+              {shareholder.passportCopy ? (
+                <>
+                  <p className="text-xs font-medium text-green-600 break-all">
+                    ✓ {shareholder.passportCopy.name}
+                  </p>
+                  <p className="text-xs text-gray-400 mt-1">
+                    {(shareholder.passportCopy.size / 1024).toFixed(2)} KB
+                  </p>
+                </>
+              ) : (
+                <>
+                  <p className="text-xs font-medium text-gray-600">
+                    Upload Passport
+                  </p>
+                  <p className="text-xs text-gray-400 mt-1">PDF, JPG, PNG</p>
+                </>
+              )}
               <input
+                id={`passport-${shareholder.id}`}
                 type="file"
                 className="hidden"
                 accept=".pdf,.jpg,.jpeg,.png"
@@ -217,7 +234,7 @@ export default function ShareholderCard({
                   onUpdate(shareholder.id, 'passportCopy', e.target.files?.[0])
                 }
               />
-            </div>
+            </label>
           </div>
 
           {/* Emirates ID */}
@@ -225,13 +242,30 @@ export default function ShareholderCard({
             <label className="block text-xs font-semibold text-gray-700 mb-2">
               Emirates ID
             </label>
-            <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center cursor-pointer hover:border-gray-400 transition-colors">
+            <label
+              htmlFor={`emirates-${shareholder.id}`}
+              className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center cursor-pointer hover:border-gray-400 transition-colors block"
+            >
               <Upload size={24} className="mx-auto text-gray-400 mb-2" />
-              <p className="text-xs font-medium text-gray-600">
-                Upload Emirates ID
-              </p>
-              <p className="text-xs text-gray-400 mt-1">If applicable</p>
+              {shareholder.emiratesId ? (
+                <>
+                  <p className="text-xs font-medium text-green-600 break-all">
+                    ✓ {shareholder.emiratesId.name}
+                  </p>
+                  <p className="text-xs text-gray-400 mt-1">
+                    {(shareholder.emiratesId.size / 1024).toFixed(2)} KB
+                  </p>
+                </>
+              ) : (
+                <>
+                  <p className="text-xs font-medium text-gray-600">
+                    Upload Emirates ID
+                  </p>
+                  <p className="text-xs text-gray-400 mt-1">If applicable</p>
+                </>
+              )}
               <input
+                id={`emirates-${shareholder.id}`}
                 type="file"
                 className="hidden"
                 accept=".pdf,.jpg,.jpeg,.png"
@@ -239,7 +273,7 @@ export default function ShareholderCard({
                   onUpdate(shareholder.id, 'emiratesId', e.target.files?.[0])
                 }
               />
-            </div>
+            </label>
           </div>
 
           {/* Residence Visa */}
@@ -247,11 +281,30 @@ export default function ShareholderCard({
             <label className="block text-xs font-semibold text-gray-700 mb-2">
               Residence Visa
             </label>
-            <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center cursor-pointer hover:border-gray-400 transition-colors">
+            <label
+              htmlFor={`visa-${shareholder.id}`}
+              className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center cursor-pointer hover:border-gray-400 transition-colors block"
+            >
               <Upload size={24} className="mx-auto text-gray-400 mb-2" />
-              <p className="text-xs font-medium text-gray-600">Upload Visa</p>
-              <p className="text-xs text-gray-400 mt-1">If applicable</p>
+              {shareholder.residenceVisa ? (
+                <>
+                  <p className="text-xs font-medium text-green-600 break-all">
+                    ✓ {shareholder.residenceVisa.name}
+                  </p>
+                  <p className="text-xs text-gray-400 mt-1">
+                    {(shareholder.residenceVisa.size / 1024).toFixed(2)} KB
+                  </p>
+                </>
+              ) : (
+                <>
+                  <p className="text-xs font-medium text-gray-600">
+                    Upload Visa
+                  </p>
+                  <p className="text-xs text-gray-400 mt-1">If applicable</p>
+                </>
+              )}
               <input
+                id={`visa-${shareholder.id}`}
                 type="file"
                 className="hidden"
                 accept=".pdf,.jpg,.jpeg,.png"
@@ -259,7 +312,7 @@ export default function ShareholderCard({
                   onUpdate(shareholder.id, 'residenceVisa', e.target.files?.[0])
                 }
               />
-            </div>
+            </label>
           </div>
         </div>
       </div>

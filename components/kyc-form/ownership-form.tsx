@@ -4,7 +4,10 @@ import { useState } from 'react';
 import { Formik, Form } from 'formik';
 import { Users, Lightbulb, ArrowRight, ChevronLeft } from 'lucide-react';
 import { Button } from '../ui/button';
-import { validationSchema } from '@/schemas/kyc/ownership.schema';
+import {
+  validationSchema,
+  validateShareholders,
+} from '@/schemas/kyc/ownership.schema';
 import { useKYCFormStore } from '@/stores/kyc-form-store';
 import OwnershipBasicInfoSection from './ownership-basic-info-section';
 import ShareholdersSection from './shareholders-section';
@@ -13,6 +16,7 @@ import LocalSponsorSection from './local-sponsor-section';
 
 export default function OwnershipForm() {
   const { formData, setFormData, nextStep, prevStep } = useKYCFormStore();
+  const [shareholderErrors, setShareholderErrors] = useState<string[]>([]);
   const [shareholders, setShareholders] = useState(
     formData.ownership.shareholders.length > 0
       ? formData.ownership.shareholders
@@ -33,7 +37,16 @@ export default function OwnershipForm() {
         ]
   );
 
-  const handleSubmit = (values: any) => {
+  const handleSubmit = async (values: any) => {
+    const errors = await validateShareholders(shareholders);
+
+    if (errors.length > 0) {
+      setShareholderErrors(errors);
+      window.scrollTo(0, 0);
+      return;
+    }
+
+    setShareholderErrors([]);
     setFormData('ownership', { ...values, shareholders });
     nextStep();
   };
@@ -108,6 +121,22 @@ export default function OwnershipForm() {
                 </span>
               </div>
             </div>
+
+            {/* Shareholder Validation Errors */}
+            {shareholderErrors.length > 0 && (
+              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+                <h3 className="text-sm font-semibold text-red-800 mb-2">
+                  Please fix the following errors:
+                </h3>
+                <ul className="list-disc list-inside space-y-1">
+                  {shareholderErrors.map((error, index) => (
+                    <li key={index} className="text-sm text-red-700">
+                      {error}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
             <div className="space-y-6">
               <OwnershipBasicInfoSection
