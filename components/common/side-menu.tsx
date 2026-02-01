@@ -2,7 +2,14 @@
 
 import { usePathname } from 'next/navigation';
 import MenuItem from './menu-item';
-import { ChartLine, DollarSign, Handshake, Settings, User } from 'lucide-react';
+import {
+  ChartLine,
+  DollarSign,
+  Handshake,
+  Medal,
+  Settings,
+  User,
+} from 'lucide-react';
 import Clients from '../icons/clients';
 import Company from '../icons/company';
 import Pro from '../icons/pro';
@@ -108,7 +115,7 @@ export default function SideMenu(props: SideMenuProps) {
         <MenuItem
           to="/"
           label="MENA Leaders"
-          icon={<Leader />}
+          icon={<Medal width={18} height={18} />}
           count={39}
           countBg="#FFEDD5"
           countColor="#C2410C"
