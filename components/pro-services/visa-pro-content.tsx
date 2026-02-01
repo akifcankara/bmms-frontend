@@ -1,4 +1,7 @@
 'use client';
+import { useParams } from 'next/navigation';
+import { useQuery } from '@tanstack/react-query';
+import axiosInstance from '@/lib/axios';
 import PassportIcon from '../icons/passport-icon';
 import PeopleIcon from '../icons/people-icon';
 import CheckCircleIcon from '../icons/check-circle-icon';
@@ -10,19 +13,44 @@ const LABEL_VISAS_REQUIRED = 'Number of Visas Required';
 const LABEL_VISA_TYPES = 'Visa Types Needed';
 const LABEL_PRO_SERVICES = 'PRO Services Selected';
 
-const VISA_TYPES = [
-  { label: 'Investor Visa (2)', count: 2 },
-  { label: 'Employee Visa (3)', count: 3 },
-];
-
-const PRO_SERVICES = [
-  'Visa Processing & Stamping',
-  'Emirates ID Processing',
-  'Medical Test Arrangements',
-  'Labor Contract Registration',
-];
+const ERROR_MESSAGE = 'Failed to load visa requirements';
+const LOADING_TEXT = 'Loading visa requirements...';
 
 export default function VisaProContent() {
+  const params = useParams();
+  const slug = params.client as string;
+
+  const { data, isLoading, isError } = useQuery<VisaProResponse>({
+    queryKey: ['kyc-visa-pro', slug],
+    queryFn: async () => {
+      const response = await axiosInstance.get(
+        `/kyc/application/${slug}/visa-pro`
+      );
+      return response.data;
+    },
+    enabled: !!slug,
+  });
+
+  if (isLoading) {
+    return (
+      <div className="bg-white border border-[#e5e7eb] border-solid rounded-[16px] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] p-[33px] flex flex-col gap-6">
+        <p className="text-[12px] text-[#6b7280]">{LOADING_TEXT}</p>
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className="bg-white border border-[#e5e7eb] border-solid rounded-[16px] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] p-[33px] flex flex-col gap-6">
+        <p className="text-red-500 text-sm">{ERROR_MESSAGE}</p>
+      </div>
+    );
+  }
+
+  if (!data) {
+    return null;
+  }
+
   return (
     <div className="bg-white border border-[#e5e7eb] border-solid rounded-[16px] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] p-[33px] flex flex-col gap-6">
       <div className="border-b border-[#e5e7eb] pb-[25px]">
@@ -55,7 +83,7 @@ export default function VisaProContent() {
           <div className="bg-[#dcfce7] px-4 py-2 rounded-[8px] flex items-center gap-2 w-fit">
             <PeopleIcon />
             <span className="text-[24px] font-bold text-[#111827] leading-[32px]">
-              5 Visas
+              {data.totalVisasRequired} Visas
             </span>
           </div>
         </div>
@@ -64,15 +92,15 @@ export default function VisaProContent() {
           <label className="text-[12px] font-bold text-[#6b7280] tracking-[0.3px] uppercase leading-[16px]">
             {LABEL_VISA_TYPES}
           </label>
-          <div className="grid grid-cols-2 gap-3">
-            {VISA_TYPES.map((visa) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 capitalize">
+            {data.visaTypes.map((visaType) => (
               <div
-                key={visa.label}
+                key={visaType}
                 className="bg-[#f0fdf4] border border-[#bbf7d0] px-[17px] py-[13px] rounded-[8px] flex items-center gap-2"
               >
                 <CheckCircleIcon />
                 <span className="text-[14px] font-bold text-[#111827] leading-[20px]">
-                  {visa.label}
+                  {visaType}
                 </span>
               </div>
             ))}
@@ -84,7 +112,7 @@ export default function VisaProContent() {
             {LABEL_PRO_SERVICES}
           </label>
           <div className="flex flex-col gap-2">
-            {PRO_SERVICES.map((service) => (
+            {data.proServices.map((service) => (
               <div
                 key={service}
                 className="bg-[#f9fafb] px-4 py-3 rounded-[8px] flex items-center gap-3"

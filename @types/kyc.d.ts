@@ -67,6 +67,12 @@ interface KycApplicationsCountResponse {
   count: number;
 }
 
+interface VisaProResponse {
+  totalVisasRequired: number;
+  visaTypes: string[];
+  proServices: string[];
+}
+
 interface InfoFieldData {
   label: string;
   value: string | null;
