@@ -21,8 +21,6 @@ const MENU_BUTTON_LABELS = {
 const MENU_BUTTON_CLASS_NAME = 'md:hidden';
 const HEADER_ACTIONS_CLASS_NAME =
   'hidden md:flex flex-wrap w-full items-center justify-between md:pl-[95px]';
-const DOCUMENT_TITLE_SUFFIX = 'BMMS';
-const DOCUMENT_TITLE_SEPARATOR = ' | ';
 
 export default function Header(props: HeaderProps) {
   const { title, subtitle, buttonText, href } = useBreadcrumb();
@@ -30,15 +28,6 @@ export default function Header(props: HeaderProps) {
   const menuLabel = props.isSidebarOpen
     ? MENU_BUTTON_LABELS.CLOSE
     : MENU_BUTTON_LABELS.OPEN;
-
-  useEffect(() => {
-    if (!title) {
-      document.title = DOCUMENT_TITLE_SUFFIX;
-      return;
-    }
-
-    document.title = `${title}${DOCUMENT_TITLE_SEPARATOR}${DOCUMENT_TITLE_SUFFIX}`;
-  }, [title]);
 
   return (
     <header className="sticky top-0 z-50 flex items-center justify-between gap-5 bg-white p-5 px-10 border-b-1 border-gray-200">
