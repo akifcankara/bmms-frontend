@@ -47,7 +47,7 @@ export default function ClientStats() {
   }
 
   return (
-    <div className="flex gap-[24px] w-full">
+    <div className="flex flex-wrap gap-[24px] w-full">
       <StatCard
         icon={<SuccessBadge />}
         value={data.status}

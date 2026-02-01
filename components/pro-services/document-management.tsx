@@ -102,7 +102,7 @@ export default function DocumentManagement() {
 
   return (
     <div className="bg-white w-full">
-      <div className="bg-[#f4f6f8] p-4 flex items-center justify-between">
+      <div className="bg-[#f4f6f8] p-4 flex flex-wrap gap-5 items-center justify-between">
         <h1 className="text-[18px] font-bold text-[#010623] leading-[24px]">
           {HEADING_TEXT}
         </h1>

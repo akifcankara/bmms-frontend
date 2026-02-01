@@ -71,7 +71,7 @@ export default function BasicInfoContent() {
   }
 
   return (
-    <div className="grid grid-cols-2 gap-y-[68px] gap-x-[38px]">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
       <InfoField label={LABEL_FULL_NAME} value={data.fullName} />
       <InfoField label={LABEL_EMAIL_ADDRESS} value={data.email} />
       <InfoField label={LABEL_PHONE_NUMBER} value={data.phoneNumber} />
