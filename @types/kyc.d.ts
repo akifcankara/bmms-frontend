@@ -93,4 +93,5 @@ interface DocumentListItem {
   name: string;
   lastUpdated: string;
   hasFile: boolean;
+  filePath: string | null;
 }

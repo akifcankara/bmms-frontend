@@ -97,6 +97,7 @@ export default function DocumentManagement() {
     name: buildDisplayName(document),
     lastUpdated: buildLastUpdated(document),
     hasFile: Boolean(document.filePath),
+    filePath: document.filePath,
   }));
 
   return (
