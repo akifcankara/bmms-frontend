@@ -6,6 +6,9 @@ import DocumentManagement from '@/components/pro-services/document-management';
 import ClientInformationTabs from '@/components/pro-services/client-information-tabs';
 import BasicInfoContent from '@/components/pro-services/basic-info-content';
 import BusinessInfoContent from '@/components/pro-services/business-info-content';
+import BankingServicesContent from '@/components/pro-services/banking-services-content';
+import VisaProContent from '@/components/pro-services/visa-pro-content';
+import OwnershipStructureContent from '@/components/pro-services/ownership-structure-content';
 
 export default function ClientKycFormPage() {
   return (
@@ -16,9 +19,9 @@ export default function ClientKycFormPage() {
           content={{
             basicInfo: <BasicInfoContent />,
             businessInfo: <BusinessInfoContent />,
-            ownershipStructure: <div>Ownership & Structure Content</div>,
-            visaPro: <div>Visa & PRO Requirements Content</div>,
-            bankingServices: <div>Banking & Additional Services Content</div>,
+            ownershipStructure: <OwnershipStructureContent />,
+            visaPro: <VisaProContent />,
+            bankingServices: <BankingServicesContent />,
           }}
         />
         <ActiveModules />
