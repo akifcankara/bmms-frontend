@@ -22,7 +22,7 @@ export default function FinancialOverview() {
 
         <div className="flex flex-col gap-3">
           <Select>
-            <SelectTrigger className="w-[526px] h-[44px] border-[#dcdcdc]">
+            <SelectTrigger className="w-full h-[44px] border-[#dcdcdc]">
               <SelectValue placeholder="Select Partner" />
             </SelectTrigger>
             <SelectContent>

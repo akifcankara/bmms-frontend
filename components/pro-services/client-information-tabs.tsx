@@ -88,7 +88,7 @@ export default function ClientInformationTabs({
           </div>
         </div>
 
-        <div className="flex gap-3">
+        <div className="flex gap-3 overflow-x-auto pb-2 -mx-2 px-2">
           {tabs.map((tab) => {
             const isActive = activeTab === tab.key;
 
@@ -96,7 +96,7 @@ export default function ClientInformationTabs({
               <button
                 key={tab.key}
                 onClick={() => setActiveTab(tab.key)}
-                className={`h-12 px-4 py-2 rounded-[8px] font-medium text-[14px] leading-[20px] transition-colors ${
+                className={`h-12 px-4 py-2 rounded-[8px] font-medium text-[14px] leading-[20px] transition-colors shrink-0 ${
                   isActive
                     ? 'bg-gradient-to-r from-[#00a0d2] to-[#05dc82] text-white'
                     : 'bg-white border border-[#d1d5db] text-[#4b5563] hover:bg-gray-50'
