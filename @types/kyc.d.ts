@@ -56,6 +56,22 @@ interface ClientStatsResponse {
   joinedDate: string;
 }
 
+interface BusinessInfoResponse {
+  companySetupType: string | null;
+  preferredJurisdiction: string | null;
+  specificLocation: string | null;
+  expectedTimeline: string | null;
+}
+
+interface InfoFieldData {
+  label: string;
+  value: string | null;
+}
+
+interface InfoFieldWithIconData extends InfoFieldData {
+  icon: React.ReactNode;
+}
+
 interface StatCardProps {
   icon: React.ReactNode;
   value: string;
@@ -63,12 +79,11 @@ interface StatCardProps {
 }
 
 interface InfoFieldWithIconProps {
-  value: string;
-  icon: React.ReactNode;
+  data: InfoFieldWithIconData;
 }
 
 interface InfoFieldProps {
-  value: string;
+  data: InfoFieldData;
 }
 
 type ShareholderDocumentType =
