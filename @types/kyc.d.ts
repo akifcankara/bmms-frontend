@@ -14,6 +14,7 @@ interface KYCFormData {
   businessSetup: Record<string, unknown>;
   ownership: {
     shareholders: Array<{
+      id: string;
       fullName: string;
       nationality: string;
       phoneCode: string;
@@ -21,9 +22,9 @@ interface KYCFormData {
       address: string;
       ownershipPercentage: string;
       passportNumber: string;
-      passportCopy?: File;
-      emiratesId?: File;
-      residenceVisa?: File;
+      passportCopy: File | null;
+      emiratesId: File | null;
+      residenceVisa: File | null;
     }>;
     [key: string]: unknown;
   };
