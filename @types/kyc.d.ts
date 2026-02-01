@@ -1,0 +1,33 @@
+interface KYCApplication {
+  id: string;
+  slug: string;
+  initials: string;
+  fullName: string;
+  email: string;
+  firstChoiceName: string;
+  industrySector: string;
+  preferredJurisdiction: string;
+}
+
+interface KYCFormData {
+  companyInfo: Record<string, unknown>;
+  businessSetup: Record<string, unknown>;
+  ownership: {
+    shareholders: Array<{
+      fullName: string;
+      nationality: string;
+      phoneCode: string;
+      phoneNumber: string;
+      address: string;
+      ownershipPercentage: string;
+      passportNumber: string;
+      passportCopy?: File;
+      emiratesId?: File;
+      residenceVisa?: File;
+    }>;
+    [key: string]: unknown;
+  };
+  visaPro: Record<string, unknown>;
+  bankingCompliance: Record<string, unknown>;
+  confirmation: Record<string, unknown>;
+}

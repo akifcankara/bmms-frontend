@@ -1,6 +1,7 @@
 'use client';
 import { useParams } from 'next/navigation';
-import { useBasicInfo } from '@/hooks/use-basic-info';
+import { useQuery } from '@tanstack/react-query';
+import axiosInstance from '@/lib/axios';
 import BasicInfoSkeleton from './basic-info-skeleton';
 
 const LABEL_FULL_NAME = 'FULL NAME';
@@ -29,11 +30,29 @@ function InfoField({ label, value }: InfoFieldProps) {
   );
 }
 
+interface BasicInfoResponse {
+  slug: string;
+  fullName: string;
+  email: string;
+  phoneNumber: string;
+  companyName: string;
+  currentLocation: string;
+}
+
 export default function BasicInfoContent() {
   const params = useParams();
   const slug = params.client as string;
 
-  const { data, isLoading, isError } = useBasicInfo(slug);
+  const { data, isLoading, isError } = useQuery<BasicInfoResponse>({
+    queryKey: ['kyc-basic-info', slug],
+    queryFn: async () => {
+      const response = await axiosInstance.get(
+        `/kyc/application/${slug}/basic-info`
+      );
+      return response.data;
+    },
+    enabled: !!slug,
+  });
 
   if (isLoading) {
     return <BasicInfoSkeleton />;

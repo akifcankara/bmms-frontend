@@ -5,7 +5,7 @@ import { Button } from '../ui/button';
 import { Skeleton } from '../ui/skeleton';
 
 interface ProServicesTableProps {
-  data: any;
+  data?: KYCApplication[];
   isLoading: boolean;
   isError: boolean;
 }
@@ -118,43 +118,45 @@ export default function ProServicesTable({
             </tr>
           </thead>
           <tbody className="divide-y" style={{ borderColor: 'var(--border)' }}>
-            {data?.map((app: any) => (
-              <tr key={app.id} className="hover:bg-accent/5">
-                <td className="px-4 py-3">
-                  <div className="flex flex-wrap gap-2">
-                    <div className="flex items-center justify-center w-12 h-12 rounded-md bg-primary/90 text-white font-bold">
-                      {app.initials}
-                    </div>
-                    <div className="flex flex-col gap-2">
-                      <div
-                        className="text-sm font-medium"
-                        style={{ color: 'var(--foreground)' }}
-                      >
-                        {app.firstChoiceName || 'N/A'}
+            {data?.map((app: KYCApplication) => {
+              return (
+                <tr key={app.id} className="hover:bg-accent/5">
+                  <td className="px-4 py-3">
+                    <div className="flex flex-wrap gap-2">
+                      <div className="flex items-center justify-center w-12 h-12 rounded-md bg-primary/90 text-white font-bold">
+                        {app.initials}
                       </div>
-                      <p className="text-xs text-muted-foreground">
-                        {app.fullName} • {app.email}
-                      </p>
+                      <div className="flex flex-col gap-2">
+                        <div
+                          className="text-sm font-medium"
+                          style={{ color: 'var(--foreground)' }}
+                        >
+                          {app.firstChoiceName || 'N/A'}
+                        </div>
+                        <p className="text-xs text-muted-foreground">
+                          {app.fullName} • {app.email}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                </td>
-                <td className="px-4 py-3">{app.industrySector}</td>
-                <td className="px-4 py-3">{app.preferredJurisdiction}</td>
-                <td className="px-4 py-3 text-right">
-                  <Link href={`/client/${app.slug}`}>
-                    <div className="flex items-center justify-end gap-2">
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className="text-primary font-bold"
-                      >
-                        View
-                      </Button>
-                    </div>
-                  </Link>
-                </td>
-              </tr>
-            ))}
+                  </td>
+                  <td className="px-4 py-3">{app.industrySector}</td>
+                  <td className="px-4 py-3">{app.preferredJurisdiction}</td>
+                  <td className="px-4 py-3 text-right">
+                    <Link href={`/pro-services/${app.slug}`}>
+                      <div className="flex items-center justify-end gap-2">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="text-primary font-bold"
+                        >
+                          View
+                        </Button>
+                      </div>
+                    </Link>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>

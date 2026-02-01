@@ -3,10 +3,11 @@
 import { useState } from 'react';
 import { Formik, Form } from 'formik';
 import { ChevronLeft, CheckCircle2, Loader2 } from 'lucide-react';
+import { useMutation } from '@tanstack/react-query';
+import axiosInstance from '@/lib/axios';
 import { Button } from '../ui/button';
 import { validationSchema } from '@/schemas/kyc/confirmation.schema';
 import { useKYCFormStore } from '@/stores/kyc-form-store';
-import { useSubmitKYC } from '@/hooks/use-submit-kyc';
 import SummarySection from './summary-section';
 import ConfirmationCheckboxesSection from './confirmation-checkboxes-section';
 import SuccessModal from './success-modal';
@@ -14,7 +15,70 @@ import SuccessModal from './success-modal';
 export default function ConfirmationSummaryForm() {
   const { formData, setFormData, prevStep, resetForm } = useKYCFormStore();
   const [showSuccessModal, setShowSuccessModal] = useState(false);
-  const { mutate: submitKYC, isPending, isError, isSuccess } = useSubmitKYC();
+
+  const {
+    mutate: submitKYC,
+    isPending,
+    isError,
+    isSuccess,
+  } = useMutation({
+    mutationFn: async (formData: KYCFormData) => {
+      const data = new FormData();
+
+      data.append('companyInfo', JSON.stringify(formData.companyInfo));
+      data.append('businessSetup', JSON.stringify(formData.businessSetup));
+      data.append('visaPro', JSON.stringify(formData.visaPro));
+      data.append(
+        'bankingCompliance',
+        JSON.stringify(formData.bankingCompliance)
+      );
+      data.append('confirmation', JSON.stringify(formData.confirmation));
+
+      const ownershipWithoutFiles = {
+        ...formData.ownership,
+        shareholders: formData.ownership.shareholders.map((shareholder) => ({
+          fullName: shareholder.fullName,
+          nationality: shareholder.nationality,
+          phoneCode: shareholder.phoneCode,
+          phoneNumber: shareholder.phoneNumber,
+          address: shareholder.address,
+          ownershipPercentage: shareholder.ownershipPercentage,
+          passportNumber: shareholder.passportNumber,
+        })),
+      };
+
+      data.append('ownership', JSON.stringify(ownershipWithoutFiles));
+
+      formData.ownership.shareholders.forEach((shareholder, index) => {
+        if (shareholder.passportCopy) {
+          data.append(
+            `shareholders[${index}][passportCopy]`,
+            shareholder.passportCopy
+          );
+        }
+        if (shareholder.emiratesId) {
+          data.append(
+            `shareholders[${index}][emiratesId]`,
+            shareholder.emiratesId
+          );
+        }
+        if (shareholder.residenceVisa) {
+          data.append(
+            `shareholders[${index}][residenceVisa]`,
+            shareholder.residenceVisa
+          );
+        }
+      });
+
+      const response = await axiosInstance.post('/kyc/application', data, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
+      return response.data;
+    },
+  });
 
   const handleSubmit = (values: typeof formData.confirmation) => {
     setFormData('confirmation', values);
