@@ -7,22 +7,6 @@ import ActiveModulesSkeleton from './active-modules-skeleton';
 
 const ERROR_MESSAGE = 'Failed to load active modules';
 
-interface ModuleDetail {
-  label: string;
-  value: string;
-}
-
-interface Module {
-  title: string;
-  description: string;
-  status: string;
-  details: ModuleDetail[];
-}
-
-interface ActiveModulesResponse {
-  modules: Module[];
-}
-
 interface ModuleCardProps {
   title: string;
   description: string;

@@ -32,3 +32,32 @@ interface KYCFormData {
   bankingCompliance: Record<string, unknown>;
   confirmation: Record<string, unknown>;
 }
+
+interface ModuleDetail {
+  label: string;
+  value: string;
+}
+
+interface Module {
+  title: string;
+  description: string;
+  status: string;
+  details: ModuleDetail[];
+}
+
+interface ActiveModulesResponse {
+  modules: Module[];
+}
+
+interface ClientStatsResponse {
+  status: string;
+  clientType: string;
+  activeModules: number;
+  joinedDate: string;
+}
+
+interface StatCardProps {
+  icon: React.ReactNode;
+  value: string;
+  label: string;
+}

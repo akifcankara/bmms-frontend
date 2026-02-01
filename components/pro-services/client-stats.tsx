@@ -1,54 +1,72 @@
 'use client';
+import { useParams } from 'next/navigation';
+import { useQuery } from '@tanstack/react-query';
+import axiosInstance from '@/lib/axios';
 import SuccessBadge from '../icons/success-badge';
 import ClientsBadge from '../icons/clients-badge';
 import BagBadge from '../icons/bag-badge';
 import CalendarBadge from '../icons/calendar-badge';
+import ClientStatsSkeleton from './client-stats-skeleton';
+import StatCard from './stat-card';
 
-interface StatCardProps {
-  icon: React.ReactNode;
-  value: string;
-  label: string;
-}
-
-function StatCard({ icon, value, label }: StatCardProps) {
-  return (
-    <div className="bg-white border border-[#e5e7eb] border-solid flex-1 rounded-[12px] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] p-6">
-      <div className="flex flex-col gap-6">
-        <div>{icon}</div>
-        <div className="flex flex-col gap-1">
-          <p className="text-[24px] font-bold text-[#111827] leading-[32px]">
-            {value}
-          </p>
-          <p className="text-[14px] text-[#6b7280] leading-[20px]">{label}</p>
-        </div>
-      </div>
-    </div>
-  );
-}
+const LABEL_CLIENT_STATUS = 'Client Status';
+const LABEL_CLIENT_TYPE = 'Client Type';
+const LABEL_MODULES = 'Modules';
+const LABEL_JOINED_DATE = 'Joined Date';
+const ERROR_MESSAGE = 'Failed to load client stats';
 
 export default function ClientStats() {
-  const status = 'Active';
-  const clientType = 'Individual';
-  const activeModules = 1;
-  const joinedDate = 'Jan 15, 2024';
+  const params = useParams();
+  const slug = params.client as string;
+
+  const { data, isLoading, isError } = useQuery<ClientStatsResponse>({
+    queryKey: ['kyc-client-stats', slug],
+    queryFn: async () => {
+      const response = await axiosInstance.get(
+        `/kyc/application/${slug}/client-stats`
+      );
+      return response.data;
+    },
+    enabled: !!slug,
+  });
+
+  if (isLoading) {
+    return <ClientStatsSkeleton />;
+  }
+
+  if (isError) {
+    return (
+      <div className="flex items-center justify-center p-8">
+        <p className="text-red-500 text-sm">{ERROR_MESSAGE}</p>
+      </div>
+    );
+  }
+
+  if (!data) {
+    return null;
+  }
 
   return (
     <div className="flex gap-[24px] w-full">
-      <StatCard icon={<SuccessBadge />} value={status} label="Client Status" />
+      <StatCard
+        icon={<SuccessBadge />}
+        value={data.status}
+        label={LABEL_CLIENT_STATUS}
+      />
       <StatCard
         icon={<ClientsBadge />}
-        value={clientType}
-        label="Client Type"
+        value={data.clientType}
+        label={LABEL_CLIENT_TYPE}
       />
       <StatCard
         icon={<BagBadge />}
-        value={`${activeModules} Active`}
-        label="Modules"
+        value={`${data.activeModules} Active`}
+        label={LABEL_MODULES}
       />
       <StatCard
         icon={<CalendarBadge />}
-        value={joinedDate}
-        label="Joined Date"
+        value={data.joinedDate}
+        label={LABEL_JOINED_DATE}
       />
     </div>
   );
