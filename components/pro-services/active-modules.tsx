@@ -1,31 +1,41 @@
 'use client';
+import { useParams } from 'next/navigation';
+import { useQuery } from '@tanstack/react-query';
+import axiosInstance from '@/lib/axios';
 import BagBadge from '../icons/bag-badge';
+import ActiveModulesSkeleton from './active-modules-skeleton';
+
+const ERROR_MESSAGE = 'Failed to load active modules';
 
 interface ModuleDetail {
   label: string;
   value: string;
 }
 
-interface ModuleCardProps {
-  icon: React.ReactNode;
+interface Module {
   title: string;
   description: string;
   status: string;
   details: ModuleDetail[];
 }
 
-function ModuleCard({
-  icon,
-  title,
-  description,
-  status,
-  details,
-}: ModuleCardProps) {
+interface ActiveModulesResponse {
+  modules: Module[];
+}
+
+interface ModuleCardProps {
+  title: string;
+  description: string;
+  status: string;
+  details: ModuleDetail[];
+}
+
+function ModuleCard({ title, description, status, details }: ModuleCardProps) {
   return (
     <div className="border border-[#e5e7eb] rounded-[8px] p-[17px]">
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-3">
-          {icon}
+          <BagBadge />
           <div className="flex flex-col">
             <p className="text-[16px] font-bold text-[#111827] leading-[24px]">
               {title}
@@ -63,19 +73,35 @@ function ModuleCard({
 }
 
 export default function ActiveModules() {
-  const modules = [
-    {
-      icon: <BagBadge />,
-      title: 'PRO Module',
-      description: 'Business Registration Services',
-      status: 'Active',
-      details: [
-        { label: 'Case ID', value: 'PRO-2024-001' },
-        { label: 'Status', value: 'License Issued' },
-        { label: 'Last Updated', value: '2 days ago' },
-      ],
+  const params = useParams();
+  const slug = params.client as string;
+
+  const { data, isLoading, isError } = useQuery<ActiveModulesResponse>({
+    queryKey: ['kyc-active-modules', slug],
+    queryFn: async () => {
+      const response = await axiosInstance.get(
+        `/kyc/application/${slug}/active-modules`
+      );
+      return response.data;
     },
-  ];
+    enabled: !!slug,
+  });
+
+  if (isLoading) {
+    return <ActiveModulesSkeleton />;
+  }
+
+  if (isError) {
+    return (
+      <div className="bg-white border border-[#e5e7eb] rounded-[12px] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] p-8 text-center">
+        <p className="text-red-500 text-sm">{ERROR_MESSAGE}</p>
+      </div>
+    );
+  }
+
+  if (!data || !data.modules || data.modules.length === 0) {
+    return null;
+  }
 
   return (
     <div className="bg-white border border-[#e5e7eb] rounded-[12px] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] p-[25px]">
@@ -85,10 +111,9 @@ export default function ActiveModules() {
         </h2>
 
         <div className="flex flex-col gap-4">
-          {modules.map((module, index) => (
+          {data.modules.map((module, index) => (
             <ModuleCard
               key={index}
-              icon={module.icon}
               title={module.title}
               description={module.description}
               status={module.status}
