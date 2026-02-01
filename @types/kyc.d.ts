@@ -70,3 +70,27 @@ interface InfoFieldWithIconProps {
 interface InfoFieldProps {
   value: string;
 }
+
+type ShareholderDocumentType =
+  | 'passport_copy'
+  | 'emirates_id'
+  | 'residence_visa';
+
+interface ShareholderDocument {
+  id: string;
+  shareholderName: string;
+  documentType: ShareholderDocumentType;
+  filePath: string | null;
+  createdAt: string;
+}
+
+interface ShareholderDocumentsResponse {
+  documents: ShareholderDocument[];
+}
+
+interface DocumentListItem {
+  id: string;
+  name: string;
+  lastUpdated: string;
+  hasFile: boolean;
+}

@@ -1,69 +1,66 @@
 'use client';
+import { useParams } from 'next/navigation';
+import { useQuery } from '@tanstack/react-query';
+import axiosInstance from '@/lib/axios';
+
 const HEADING_TEXT = 'Document Management Systems';
-const FILE_SIZE = '10 GB';
-const FILE_DATE = '02.06.2024';
+const ERROR_MESSAGE = 'Failed to load documents';
+const EMPTY_MESSAGE = 'No documents available';
+const LOADING_TEXT = 'Loading documents...';
+const NOT_UPLOADED_TEXT = 'Not uploaded';
+const QUERY_KEY_SHAREHOLDER_DOCUMENTS = 'kyc-shareholder-documents';
+const DATE_LOCALE = 'en-US';
+const FILE_PATH_SEPARATOR = '/';
+const DOCUMENT_TYPE_LABELS = {
+  passport_copy: 'Passport Copy',
+  emirates_id: 'Emirates ID',
+  residence_visa: 'Residence Visa',
+} as const;
 
-interface FileItem {
-  id: string;
-  name: string;
-  type: 'folder' | 'image' | 'excel';
-  size: string;
-  lastUpdated: string;
-}
+const DATE_FORMAT_OPTIONS: Intl.DateTimeFormatOptions = {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+};
 
-function FileRow({ file }: { file: FileItem }) {
-  const getFileIcon = () => {
-    if (file.type === 'folder') {
-      return (
-        <svg
-          width="32"
-          height="28"
-          viewBox="0 0 32 28"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M28.8 4.8H14.4L11.2 1.6C10.88 1.28 10.4 1.12 9.92 1.12H3.2C1.44 1.12 0 2.56 0 4.32V23.68C0 25.44 1.44 26.88 3.2 26.88H28.8C30.56 26.88 32 25.44 32 23.68V8C32 6.24 30.56 4.8 28.8 4.8Z"
-            fill="#FFA726"
-          />
-        </svg>
-      );
-    }
-    if (file.type === 'image') {
-      return (
-        <div className="w-8 h-8 bg-red-500 rounded flex items-center justify-center">
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 20 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M19 0H1C0.45 0 0 0.45 0 1V19C0 19.55 0.45 20 1 20H19C19.55 20 20 19.55 20 19V1C20 0.45 19.55 0 19 0ZM6 5C6.83 5 7.5 5.67 7.5 6.5C7.5 7.33 6.83 8 6 8C5.17 8 4.5 7.33 4.5 6.5C4.5 5.67 5.17 5 6 5ZM16 16H4V14L7 11L9 13L13 9L16 12V16Z"
-              fill="white"
-            />
-          </svg>
-        </div>
-      );
-    }
-    return (
-      <div className="w-8 h-8 bg-green-600 rounded flex items-center justify-center">
-        <svg
-          width="15"
-          height="20"
-          viewBox="0 0 15 20"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M9.375 0H1.875C0.839844 0 0 0.839844 0 1.875V18.125C0 19.1602 0.839844 20 1.875 20H13.125C14.1602 20 15 19.1602 15 18.125V5.625L9.375 0Z"
-            fill="white"
-          />
-        </svg>
-      </div>
-    );
-  };
+const FILE_ICON_COLORS = {
+  HAS_FILE: '#16a34a',
+  MISSING_FILE: '#9ca3af',
+} as const;
+
+const getFileName = (filePath: string | null) => {
+  if (!filePath) {
+    return NOT_UPLOADED_TEXT;
+  }
+
+  const segments = filePath.split(FILE_PATH_SEPARATOR).filter(Boolean);
+  return segments[segments.length - 1] || NOT_UPLOADED_TEXT;
+};
+
+const formatDate = (dateValue: string) => {
+  const parsedDate = new Date(dateValue);
+  if (Number.isNaN(parsedDate.getTime())) {
+    return NOT_UPLOADED_TEXT;
+  }
+
+  return parsedDate.toLocaleDateString(DATE_LOCALE, DATE_FORMAT_OPTIONS);
+};
+
+const buildDisplayName = (document: ShareholderDocument) => {
+  const fileName = getFileName(document.filePath);
+  return `${document.shareholderName} - ${
+    DOCUMENT_TYPE_LABELS[document.documentType]
+  } - ${fileName}`;
+};
+
+const buildLastUpdated = (document: ShareholderDocument) => {
+  return formatDate(document.createdAt);
+};
+
+function FileRow({ file }: { file: DocumentListItem }) {
+  const iconColor = file.hasFile
+    ? FILE_ICON_COLORS.HAS_FILE
+    : FILE_ICON_COLORS.MISSING_FILE;
 
   return (
     <div className="flex items-center justify-between p-2.5 border-b border-[#7a7a7a] bg-white">
@@ -72,16 +69,29 @@ function FileRow({ file }: { file: FileItem }) {
           type="checkbox"
           className="w-6 h-6 border border-[#7a7a7a] rounded-[2px]"
         />
-        {getFileIcon()}
+        <div
+          className="w-8 h-8 rounded flex items-center justify-center"
+          style={{ backgroundColor: iconColor }}
+        >
+          <svg
+            width="15"
+            height="20"
+            viewBox="0 0 15 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M9.375 0H1.875C0.839844 0 0 0.839844 0 1.875V18.125C0 19.1602 0.839844 20 1.875 20H13.125C14.1602 20 15 19.1602 15 18.125V5.625L9.375 0Z"
+              fill="white"
+            />
+          </svg>
+        </div>
         <span className="text-[12px] font-semibold text-black tracking-[0.12px]">
           {file.name}
         </span>
       </div>
 
       <div className="flex items-center gap-[140px]">
-        <span className="text-[12px] text-[#676a7b] tracking-[0.12px] w-[52px]">
-          {file.size}
-        </span>
         <span className="text-[12px] text-[#676a7b] tracking-[0.12px]">
           {file.lastUpdated}
         </span>
@@ -105,64 +115,50 @@ function FileRow({ file }: { file: FileItem }) {
 }
 
 export default function DocumentManagement() {
-  const files: FileItem[] = [
-    {
-      id: '1',
-      name: 'Folder Name',
-      type: 'folder',
-      size: FILE_SIZE,
-      lastUpdated: FILE_DATE,
+  const params = useParams();
+  const slug = params.client as string;
+
+  const { data, isLoading, isError } = useQuery<ShareholderDocumentsResponse>({
+    queryKey: [QUERY_KEY_SHAREHOLDER_DOCUMENTS, slug],
+    queryFn: async () => {
+      const response = await axiosInstance.get(
+        `/kyc/application/${slug}/shareholders`
+      );
+      return response.data;
     },
-    {
-      id: '2',
-      name: 'Folder Name',
-      type: 'folder',
-      size: FILE_SIZE,
-      lastUpdated: FILE_DATE,
-    },
-    {
-      id: '3',
-      name: 'Folder Name',
-      type: 'folder',
-      size: FILE_SIZE,
-      lastUpdated: FILE_DATE,
-    },
-    {
-      id: '4',
-      name: 'IMG.jpeg',
-      type: 'image',
-      size: FILE_SIZE,
-      lastUpdated: FILE_DATE,
-    },
-    {
-      id: '5',
-      name: 'IMG.jpeg',
-      type: 'image',
-      size: FILE_SIZE,
-      lastUpdated: FILE_DATE,
-    },
-    {
-      id: '6',
-      name: 'test.xlsx',
-      type: 'excel',
-      size: FILE_SIZE,
-      lastUpdated: FILE_DATE,
-    },
-    {
-      id: '7',
-      name: 'test.xlsx',
-      type: 'excel',
-      size: FILE_SIZE,
-      lastUpdated: FILE_DATE,
-    },
-    {
-      id: '8',
-      name: 'test.xlsx',
-      type: 'excel',
-      size: FILE_SIZE,
-      lastUpdated: FILE_DATE,
-    },
-  ];
+    enabled: !!slug,
+  });
+
+  if (isLoading) {
+    return (
+      <div className="bg-white w-full p-4">
+        <p className="text-[12px] text-[#676a7b]">{LOADING_TEXT}</p>
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className="bg-white w-full p-4">
+        <p className="text-red-500 text-sm">{ERROR_MESSAGE}</p>
+      </div>
+    );
+  }
+
+  if (!data || data.documents.length === 0) {
+    return (
+      <div className="bg-white w-full p-4">
+        <p className="text-[12px] text-[#676a7b]">{EMPTY_MESSAGE}</p>
+      </div>
+    );
+  }
+
+  const files: DocumentListItem[] = data.documents.map((document) => ({
+    id: document.id,
+    name: buildDisplayName(document),
+    lastUpdated: buildLastUpdated(document),
+    hasFile: Boolean(document.filePath),
+  }));
 
   return (
     <div className="bg-white w-full">
