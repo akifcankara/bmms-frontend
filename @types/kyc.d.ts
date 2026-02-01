@@ -63,6 +63,10 @@ interface BusinessInfoResponse {
   expectedTimeline: string | null;
 }
 
+interface KycApplicationsCountResponse {
+  count: number;
+}
+
 interface InfoFieldData {
   label: string;
   value: string | null;
