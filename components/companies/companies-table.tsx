@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { Button } from '../ui/button';
 import { Skeleton } from '../ui/skeleton';
 
@@ -140,15 +141,17 @@ export default function ProServicesTable({
                 <td className="px-4 py-3">{app.industrySector}</td>
                 <td className="px-4 py-3">{app.preferredJurisdiction}</td>
                 <td className="px-4 py-3 text-right">
-                  <div className="flex items-center justify-end gap-2">
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="text-primary font-bold"
-                    >
-                      View
-                    </Button>
-                  </div>
+                  <Link href={`/client/${app.slug}`}>
+                    <div className="flex items-center justify-end gap-2">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="text-primary font-bold"
+                      >
+                        View
+                      </Button>
+                    </div>
+                  </Link>
                 </td>
               </tr>
             ))}
