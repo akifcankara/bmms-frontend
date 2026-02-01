@@ -73,6 +73,20 @@ interface VisaProResponse {
   proServices: string[];
 }
 
+interface OwnershipShareholder {
+  id: string;
+  fullName: string;
+  nationality: string;
+  ownershipPercentage: string;
+  passportNumber: string;
+}
+
+interface OwnershipStructureResponse {
+  ownershipType: string;
+  numberOfShareholders: number;
+  shareholders: OwnershipShareholder[];
+}
+
 interface InfoFieldData {
   label: string;
   value: string | null;
