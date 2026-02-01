@@ -29,6 +29,7 @@ export default function ProServicesPage() {
   useEffect(() => {
     setContent('PRO services', 'PRO services', 'New Client', '/kyc-form');
   }, []);
+
   return (
     <AppShell>
       <main className="p-2 md:p-6">

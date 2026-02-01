@@ -3,6 +3,8 @@ import { useParams } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import axiosInstance from '@/lib/axios';
 import BasicInfoSkeleton from './basic-info-skeleton';
+import { useEffect } from 'react';
+import { useBreadcrumb } from '@/store/breadcrumb';
 
 const LABEL_FULL_NAME = 'FULL NAME';
 const LABEL_EMAIL_ADDRESS = 'EMAIL ADDRESS';
@@ -42,6 +44,7 @@ interface BasicInfoResponse {
 export default function BasicInfoContent() {
   const params = useParams();
   const slug = params.client as string;
+  const { setContent } = useBreadcrumb();
 
   const { data, isLoading, isError } = useQuery<BasicInfoResponse>({
     queryKey: ['kyc-basic-info', slug],
@@ -53,6 +56,13 @@ export default function BasicInfoContent() {
     },
     enabled: !!slug,
   });
+
+  useEffect(() => {
+    if (!data) {
+      return;
+    }
+    setContent(data.fullName, data.email, 'New Client', '/kyc-form');
+  }, [data]);
 
   if (isLoading) {
     return <BasicInfoSkeleton />;
