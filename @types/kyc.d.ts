@@ -120,3 +120,12 @@ interface DocumentListItem {
   hasFile: boolean;
   filePath: string | null;
 }
+
+interface BasicInfoResponse {
+  slug: string;
+  fullName: string;
+  email: string;
+  phoneNumber: string;
+  companyName: string;
+  currentLocation: string;
+}
