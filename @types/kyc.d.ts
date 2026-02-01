@@ -87,6 +87,13 @@ interface OwnershipStructureResponse {
   shareholders: OwnershipShareholder[];
 }
 
+interface BankingServicesResponse {
+  bankingServices: string[];
+  preferredBank: string | null;
+  additionalServices: string[];
+  monthlyBudget: string | null;
+}
+
 interface InfoFieldData {
   label: string;
   value: string | null;
