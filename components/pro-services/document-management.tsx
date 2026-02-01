@@ -3,11 +3,11 @@ import { useParams } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import axiosInstance from '@/lib/axios';
 import DocumentRow from './document-row';
+import DocumentManagementSkeleton from './document-management-skeleton';
 
 const HEADING_TEXT = 'Document Management Systems';
 const ERROR_MESSAGE = 'Failed to load documents';
 const EMPTY_MESSAGE = 'No documents available';
-const LOADING_TEXT = 'Loading documents...';
 const NOT_UPLOADED_TEXT = 'Not uploaded';
 const QUERY_KEY_SHAREHOLDER_DOCUMENTS = 'kyc-shareholder-documents';
 const DATE_LOCALE = 'en-US';
@@ -69,11 +69,7 @@ export default function DocumentManagement() {
   });
 
   if (isLoading) {
-    return (
-      <div className="bg-white w-full p-4">
-        <p className="text-[12px] text-[#676a7b]">{LOADING_TEXT}</p>
-      </div>
-    );
+    return <DocumentManagementSkeleton />;
   }
 
   if (isError) {
