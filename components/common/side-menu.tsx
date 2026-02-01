@@ -6,6 +6,8 @@ import ClientsSection from './side-menu/clients-section';
 import ModulesSection from './side-menu/modules-section';
 import ManagementSection from './side-menu/management-section';
 import SystemSection from './side-menu/system-section';
+import { useQuery } from '@tanstack/react-query';
+import axiosInstance from '@/lib/axios';
 
 type SideMenuProps = {
   isMobileOpen: boolean;
@@ -23,6 +25,15 @@ export default function SideMenu(props: SideMenuProps) {
     ? SIDEBAR_MOBILE_OPEN_CLASS_NAME
     : SIDEBAR_MOBILE_CLOSED_CLASS_NAME;
 
+  const { data } = useQuery({
+    queryKey: ['sidemenu-counts'],
+    queryFn: async () => {
+      const response =
+        await axiosInstance.get<SideMenuCounts>(`/sidemenu/counts`);
+      return response.data;
+    },
+  });
+
   return (
     <aside
       className={cn(
@@ -34,7 +45,7 @@ export default function SideMenu(props: SideMenuProps) {
     >
       <DashboardSection />
       <ClientsSection />
-      <ModulesSection />
+      <ModulesSection counts={data} />
       <ManagementSection />
       <SystemSection />
     </aside>

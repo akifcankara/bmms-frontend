@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation';
 import MenuItem from '../menu-item';
 import Pro from '../../icons/pro';
 
-export default function ProMenuItem() {
+export default function ProMenuItem({ counts }: { counts?: SideMenuCounts }) {
   const pathname = usePathname();
   const isActive =
     pathname === '/pro-services' || pathname.startsWith('/pro-services/');
@@ -14,7 +14,7 @@ export default function ProMenuItem() {
       to="/pro-services"
       label="PRO"
       icon={<Pro />}
-      count={67}
+      count={counts?.kycApplicationCount}
       countBg="#DEDEDE"
       countColor="#7E22CE"
       active={isActive}
