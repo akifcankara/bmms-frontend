@@ -139,8 +139,10 @@ export default function ProServicesTable({
                       </div>
                     </div>
                   </td>
-                  <td className="px-4 py-3">{app.industrySector}</td>
-                  <td className="px-4 py-3">{app.preferredJurisdiction}</td>
+                  <td className="px-4 py-3 capitalize">{app.industrySector}</td>
+                  <td className="px-4 py-3 capitalize">
+                    {app.preferredJurisdiction}
+                  </td>
                   <td className="px-4 py-3 text-right">
                     <Link href={`/pro-services/${app.slug}`}>
                       <div className="flex items-center justify-end gap-2">
