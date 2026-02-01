@@ -1,52 +1,10 @@
 'use client';
 
+import InfoField from './info-field';
+import { InfoFieldWithIcon } from './info-field-with-icon';
+
 const TITLE = 'Business Setup Intent';
 const SUBTITLE = 'Your business setup plans and preferences';
-
-const LABEL_SETUP_TYPE = 'SETUP TYPE';
-const LABEL_PREFERRED_JURISDICTION = 'PREFERRED JURISDICTION';
-const LABEL_SPECIFIC_LOCATION = 'SPECIFIC LOCATION';
-const LABEL_EXPECTED_TIMELINE = 'EXPECTED TIMELINE';
-
-interface InfoFieldWithIconProps {
-  label: string;
-  value: string;
-  icon: React.ReactNode;
-}
-
-interface InfoFieldProps {
-  label: string;
-  value: string;
-}
-
-function InfoFieldWithIcon({ label, value, icon }: InfoFieldWithIconProps) {
-  return (
-    <div className="flex flex-col gap-1">
-      <label className="text-[12px] font-bold text-[#6b7280] uppercase tracking-[0.3px] leading-[16px]">
-        {label}
-      </label>
-      <div className="flex items-center gap-2">
-        {icon}
-        <p className="text-[16px] font-bold text-[#111827] leading-[24px]">
-          {value}
-        </p>
-      </div>
-    </div>
-  );
-}
-
-function InfoField({ label, value }: InfoFieldProps) {
-  return (
-    <div className="flex flex-col gap-1">
-      <label className="text-[12px] font-bold text-[#6b7280] uppercase tracking-[0.3px] leading-[16px]">
-        {label}
-      </label>
-      <p className="text-[16px] font-bold text-[#111827] leading-[24px]">
-        {value}
-      </p>
-    </div>
-  );
-}
 
 export default function BusinessInfoContent() {
   const setupType = 'New Company Formation';
@@ -92,7 +50,6 @@ export default function BusinessInfoContent() {
 
       <div className="grid grid-cols-2 gap-y-[76px] gap-x-[38px]">
         <InfoFieldWithIcon
-          label={LABEL_SETUP_TYPE}
           value={setupType}
           icon={
             <div className="w-8 h-8 rounded-[8px] bg-[#ccfbf1] flex items-center justify-center">
@@ -113,7 +70,6 @@ export default function BusinessInfoContent() {
         />
 
         <InfoFieldWithIcon
-          label={LABEL_PREFERRED_JURISDICTION}
           value={preferredJurisdiction}
           icon={
             <div className="w-8 h-8 rounded-[8px] bg-[#dcfce7] flex items-center justify-center">
@@ -133,10 +89,9 @@ export default function BusinessInfoContent() {
           }
         />
 
-        <InfoField label={LABEL_SPECIFIC_LOCATION} value={specificLocation} />
+        <InfoField value={specificLocation} />
 
         <InfoFieldWithIcon
-          label={LABEL_EXPECTED_TIMELINE}
           value={expectedTimeline}
           icon={
             <div className="w-8 h-8 rounded-[8px] bg-[#dbeafe] flex items-center justify-center">

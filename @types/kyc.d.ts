@@ -61,3 +61,12 @@ interface StatCardProps {
   value: string;
   label: string;
 }
+
+interface InfoFieldWithIconProps {
+  value: string;
+  icon: React.ReactNode;
+}
+
+interface InfoFieldProps {
+  value: string;
+}
