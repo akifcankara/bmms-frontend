@@ -3,34 +3,14 @@ const FILE_ICON_COLORS = {
   MISSING_FILE: '#9ca3af',
 } as const;
 
-const BASE_API_URL = process.env.NEXT_PUBLIC_API_URL || '';
-const URL_SEPARATOR = '/';
-
-const buildFileUrl = (baseUrl: string, filePath: string) => {
-  if (!baseUrl) {
-    return filePath;
-  }
-
-  if (baseUrl.endsWith(URL_SEPARATOR) && filePath.startsWith(URL_SEPARATOR)) {
-    return `${baseUrl}${filePath.slice(1)}`;
-  }
-
-  if (!baseUrl.endsWith(URL_SEPARATOR) && !filePath.startsWith(URL_SEPARATOR)) {
-    return `${baseUrl}${URL_SEPARATOR}${filePath}`;
-  }
-
-  return `${baseUrl}${filePath}`;
-};
+const BASE_API_URL = process.env.NEXT_PUBLIC_API_URL!;
 
 export default function DocumentRow({ file }: { file: DocumentListItem }) {
   const iconColor = file.hasFile
     ? FILE_ICON_COLORS.HAS_FILE
     : FILE_ICON_COLORS.MISSING_FILE;
   const fileUrl =
-    file.hasFile && file.filePath
-      ? buildFileUrl(BASE_API_URL, file.filePath)
-      : '';
-
+    file.hasFile && file.filePath ? `${BASE_API_URL}${file.filePath}` : '';
   return (
     <div className="flex items-center justify-between p-2.5 border-b border-[#7a7a7a] bg-white">
       <div className="flex items-center gap-2">
