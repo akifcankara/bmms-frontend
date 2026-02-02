@@ -59,7 +59,7 @@ export default function VisaProContent() {
                 'linear-gradient(135deg, rgb(34, 197, 94) 0%, rgb(22, 163, 74) 100%)',
             }}
           >
-            <BadgeCheck className="w-5 h-5" />
+            <BadgeCheck className="w-5 h-5 text-white" />
           </div>
           <div>
             <h2 className="text-[20px] font-bold text-[#111827] leading-[28px]">
