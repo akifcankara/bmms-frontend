@@ -24,10 +24,18 @@ const TOTAL_STEPS = 6;
 
 export default function KYCFormPage() {
   const currentStep = useKYCFormStore((state) => state.currentStep);
+  const fillRandomData = useKYCFormStore((state) => state.fillRandomData);
+  const resetForm = useKYCFormStore((state) => state.resetForm);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [currentStep]);
+
+  useEffect(() => {
+    return () => {
+      resetForm();
+    };
+  }, [resetForm]);
 
   const steps = KYC_STEPS.map((step, index) => ({
     ...step,
@@ -73,6 +81,16 @@ export default function KYCFormPage() {
     <FormShell>
       <Indicator currentProgress={currentProgress} steps={steps} />
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 md:px-8 lg:px-20 py-4 sm:py-6 md:py-8">
+        {process.env.NODE_ENV === 'development' && (
+          <div className="mb-4 flex justify-end">
+            <button
+              onClick={fillRandomData}
+              className="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white text-sm font-medium rounded-lg transition-colors"
+            >
+              🎲 Use Random Values
+            </button>
+          </div>
+        )}
         {renderCurrentForm()}
       </div>
     </FormShell>

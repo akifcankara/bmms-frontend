@@ -21,8 +21,8 @@ export default function Companies() {
   return (
     <AppShell>
       <main className="p-2 md:p-6">
-        <Filter />
-        <CompaniesTable />
+        <Filter onSearchChange={() => {}} />
+        <CompaniesTable data={[]} isError={false} isLoading={false} />
       </main>
     </AppShell>
   );

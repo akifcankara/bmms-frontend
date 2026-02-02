@@ -24,5 +24,10 @@ export const useBreadcrumb = create<Store>()((set) => ({
     subtitle: string,
     buttonText: string,
     href: string
-  ) => set({ title, subtitle, buttonText, href }),
+  ) => {
+    set({ title, subtitle, buttonText, href });
+    setTimeout(() => {
+      document.title = `${title} | BMMS`;
+    }, 100);
+  },
 }));

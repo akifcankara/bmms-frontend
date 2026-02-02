@@ -1,0 +1,3 @@
+interface SideMenuCounts {
+  kycApplicationCount: number;
+}

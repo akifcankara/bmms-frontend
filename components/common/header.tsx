@@ -7,6 +7,7 @@ import Avatar from './avatar';
 import PlusIcon from '../icons/plus';
 import { useBreadcrumb } from '@/store/breadcrumb';
 import Link from 'next/link';
+import { useEffect } from 'react';
 
 type HeaderProps = {
   onMenuToggle: () => void;
