@@ -12,7 +12,7 @@ export default function AllClientsMenuItem() {
   return (
     <MenuItem
       to="/all-clients"
-      label="All Clients"
+      label="All Contacts"
       icon={<Clients />}
       count={248}
       countColor="#1D4ED8"
