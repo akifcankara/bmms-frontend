@@ -12,7 +12,7 @@ export default function ClientsSection() {
         Clients
       </div>
       <AllClientsMenuItem />
-      <CompaniesMenuItem />
+      {/* <CompaniesMenuItem /> */}
     </div>
   );
 }
