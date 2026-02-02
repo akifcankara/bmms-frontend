@@ -1,5 +1,4 @@
-import DocumentFileIcon from '@/components/icons/document-file-icon';
-import DocumentRowMenu from '@/components/icons/document-row-menu';
+import { FileText } from 'lucide-react';
 
 const FILE_ICON_COLORS = {
   HAS_FILE: '#16a34a',
@@ -20,7 +19,7 @@ export default function DocumentRow({ file }: { file: DocumentListItem }) {
           className="w-8 h-8 rounded flex items-center justify-center"
           style={{ backgroundColor: iconColor }}
         >
-          <DocumentFileIcon />
+          <FileText className="w-[15px] h-5 text-white" />
         </div>
         {fileUrl ? (
           <a

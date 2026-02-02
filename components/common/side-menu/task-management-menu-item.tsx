@@ -1,8 +1,8 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
+import { Star } from 'lucide-react';
 import MenuItem from '../menu-item';
-import Pro from '../../icons/pro';
 
 export default function TaskManagementMenuItem() {
   const pathname = usePathname();
@@ -13,7 +13,7 @@ export default function TaskManagementMenuItem() {
     <MenuItem
       to="/task-management"
       label="Task Management"
-      icon={<Pro />}
+      icon={<Star className="w-5 h-5" />}
       count={67}
       countBg="#FEE2E2"
       countColor="#B91C1C"

@@ -1,4 +1,4 @@
-import BagBadge from '../icons/bag-badge';
+import { Briefcase } from 'lucide-react';
 
 interface ModuleCardProps {
   title: string;
@@ -17,7 +17,7 @@ export function ModuleCard({
     <div className="border border-[#e5e7eb] rounded-[8px] p-[17px]">
       <div className="flex flex-col md:flex-row gap-3 md:items-center md:justify-between mb-3">
         <div className="flex items-center gap-3">
-          <BagBadge />
+          <Briefcase className="w-5 h-5" />
           <div className="flex flex-col">
             <p className="text-[16px] font-bold text-[#111827] leading-[24px]">
               {title}

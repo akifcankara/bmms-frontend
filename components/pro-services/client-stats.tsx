@@ -2,10 +2,7 @@
 import { useParams } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import axiosInstance from '@/lib/axios';
-import SuccessBadge from '../icons/success-badge';
-import ClientsBadge from '../icons/clients-badge';
-import BagBadge from '../icons/bag-badge';
-import CalendarBadge from '../icons/calendar-badge';
+import { CheckCircle, Users, Briefcase, Calendar } from 'lucide-react';
 import ClientStatsSkeleton from './client-stats-skeleton';
 import StatCard from './stat-card';
 
@@ -49,22 +46,22 @@ export default function ClientStats() {
   return (
     <div className="flex flex-wrap gap-[24px] w-full">
       <StatCard
-        icon={<SuccessBadge />}
+        icon={<CheckCircle className="w-5 h-5" />}
         value={data.status}
         label={LABEL_CLIENT_STATUS}
       />
       <StatCard
-        icon={<ClientsBadge />}
+        icon={<Users className="w-5 h-5" />}
         value={data.clientType}
         label={LABEL_CLIENT_TYPE}
       />
       <StatCard
-        icon={<BagBadge />}
+        icon={<Briefcase className="w-5 h-5" />}
         value={`${data.activeModules} Active`}
         label={LABEL_MODULES}
       />
       <StatCard
-        icon={<CalendarBadge />}
+        icon={<Calendar className="w-5 h-5" />}
         value={data.joinedDate}
         label={LABEL_JOINED_DATE}
       />

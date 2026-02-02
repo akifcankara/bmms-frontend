@@ -1,5 +1,5 @@
 'use client';
-import FilterIcon from '../icons/filter-icon';
+import { Filter } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 
@@ -23,7 +23,7 @@ export default function FilterTable() {
           size="sm"
           className="text-[#374151] min-w-[100px]"
         >
-          <FilterIcon />
+          <Filter className="w-4 h-4" />
           Filter
         </Button>
       </div>

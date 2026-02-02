@@ -1,8 +1,8 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
+import { Users } from 'lucide-react';
 import MenuItem from '../menu-item';
-import Clients from '../../icons/clients';
 
 export default function AllClientsMenuItem() {
   const pathname = usePathname();
@@ -13,7 +13,7 @@ export default function AllClientsMenuItem() {
     <MenuItem
       to="/all-clients"
       label="All Contacts"
-      icon={<Clients />}
+      icon={<Users className="w-5 h-5" />}
       count={248}
       countColor="#1D4ED8"
       countBg="#DBEAFE"
