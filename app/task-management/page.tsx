@@ -19,13 +19,12 @@ export default function TaskManagement() {
 
   return (
     <AppShell>
-      <p>Coming Soon</p>
-      {/* <main className="flex flex-col gap-4">
+      <main className="flex flex-col gap-4">
         <Todo />
         <div>
           <Table />
         </div>
-      </main> */}
+      </main>
     </AppShell>
   );
 }
