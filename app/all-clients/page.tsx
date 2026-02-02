@@ -11,7 +11,7 @@ export default function AllClients() {
 
   useEffect(() => {
     setContent(
-      'All Clients',
+      'All Contacts',
       'Manage and view all client accounts',
       'New Client',
       '/'
