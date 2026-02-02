@@ -20,11 +20,12 @@ export default function AllClients() {
 
   return (
     <AppShell>
-      <div className="flex flex-col gap-4">
+      <p>Coming Soon</p>
+      {/* <div className="flex flex-col gap-4">
         <Stats />
         <Filter />
         <Table />
-      </div>
+      </div> */}
     </AppShell>
   );
 }

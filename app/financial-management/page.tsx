@@ -21,14 +21,15 @@ export default function FinancialManagement() {
 
   return (
     <AppShell>
-      <main className="flex flex-col gap-5">
+      <p>Coming Soon</p>
+      {/* <main className="flex flex-col gap-5">
         <Stats />
         <div className="flex flex-wrap gap-3">
           <PaymentStatus />
           <TopRevenueClients />
         </div>
         <RecentTransactions />
-      </main>
+      </main> */}
     </AppShell>
   );
 }
