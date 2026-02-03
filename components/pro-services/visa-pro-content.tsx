@@ -2,10 +2,7 @@
 import { useParams } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import axiosInstance from '@/lib/axios';
-import PassportIcon from '../icons/passport-icon';
-import PeopleIcon from '../icons/people-icon';
-import CheckCircleIcon from '../icons/check-circle-icon';
-import CheckIcon from '../icons/check-icon';
+import { BadgeCheck, Users, CheckCircle, Check } from 'lucide-react';
 
 const HEADER_TITLE = 'Visa & PRO Requirements';
 const HEADER_SUBTITLE = 'Visa and PRO service requirements';
@@ -62,7 +59,7 @@ export default function VisaProContent() {
                 'linear-gradient(135deg, rgb(34, 197, 94) 0%, rgb(22, 163, 74) 100%)',
             }}
           >
-            <PassportIcon />
+            <BadgeCheck className="w-5 h-5 text-white" />
           </div>
           <div>
             <h2 className="text-[20px] font-bold text-[#111827] leading-[28px]">
@@ -81,7 +78,7 @@ export default function VisaProContent() {
             {LABEL_VISAS_REQUIRED}
           </label>
           <div className="bg-[#dcfce7] px-4 py-2 rounded-[8px] flex items-center gap-2 w-fit">
-            <PeopleIcon />
+            <Users className="w-5 h-5" />
             <span className="text-[24px] font-bold text-[#111827] leading-[32px]">
               {data.totalVisasRequired} Visas
             </span>
@@ -98,7 +95,7 @@ export default function VisaProContent() {
                 key={visaType}
                 className="bg-[#f0fdf4] border border-[#bbf7d0] px-[17px] py-[13px] rounded-[8px] flex items-center gap-2"
               >
-                <CheckCircleIcon />
+                <CheckCircle className="w-4 h-4 text-green-600" />
                 <span className="text-[14px] font-bold text-[#111827] leading-[20px]">
                   {visaType}
                 </span>
@@ -117,7 +114,7 @@ export default function VisaProContent() {
                 key={service}
                 className="bg-[#f9fafb] px-4 py-3 rounded-[8px] flex items-center gap-3"
               >
-                <CheckIcon />
+                <Check className="w-4 h-4 text-green-600" />
                 <span className="text-[14px] font-medium text-[#111827] leading-[20px]">
                   {service}
                 </span>

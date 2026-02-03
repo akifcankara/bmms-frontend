@@ -2,8 +2,7 @@
 import { useParams } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import axiosInstance from '@/lib/axios';
-import OwnershipIcon from '../icons/ownership-icon';
-import PartnershipIcon from '../icons/partnership-icon';
+import { Building2, Handshake } from 'lucide-react';
 
 const HEADER_TITLE = 'Ownership & Structure';
 const HEADER_SUBTITLE = 'Company ownership details and structure';
@@ -59,7 +58,7 @@ export default function OwnershipStructureContent() {
                 'linear-gradient(135deg, rgb(99, 102, 241) 0%, rgb(79, 70, 229) 100%)',
             }}
           >
-            <OwnershipIcon />
+            <Building2 className="w-5 h-5" />
           </div>
           <div>
             <h2 className="text-[20px] font-bold text-[#111827] leading-[28px]">
@@ -80,7 +79,7 @@ export default function OwnershipStructureContent() {
             </label>
             <div className="flex items-center">
               <div className="bg-[#e0e7ff] w-[32px] h-[32px] rounded-[8px] flex items-center justify-center">
-                <PartnershipIcon />
+                <Handshake className="w-5 h-5" />
               </div>
               <span className="text-[16px] font-bold text-[#111827] leading-[24px] pl-2">
                 {data.ownershipType}

@@ -21,15 +21,14 @@ export default function UserManagement() {
 
   return (
     <AppShell>
-      <p>Coming Soon</p>
-      {/* <main className="flex flex-col gap-3">
+      <main className="flex flex-col gap-3">
         <Stats />
         <Table />
         <div className="flex flex-wrap gap-2">
           <PendingInvitations />
           <RolesPermissions />
         </div>
-      </main> */}
+      </main>
     </AppShell>
   );
 }

@@ -11,7 +11,7 @@ export default function AllClients() {
 
   useEffect(() => {
     setContent(
-      'All Clients',
+      'All Contacts',
       'Manage and view all client accounts',
       'New Client',
       '/'
@@ -20,12 +20,11 @@ export default function AllClients() {
 
   return (
     <AppShell>
-      <p>Coming Soon</p>
-      {/* <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4">
         <Stats />
         <Filter />
         <Table />
-      </div> */}
+      </div>
     </AppShell>
   );
 }

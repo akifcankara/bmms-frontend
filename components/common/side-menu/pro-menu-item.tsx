@@ -1,8 +1,8 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
+import { Star } from 'lucide-react';
 import MenuItem from '../menu-item';
-import Pro from '../../icons/pro';
 
 export default function ProMenuItem({ counts }: { counts?: SideMenuCounts }) {
   const pathname = usePathname();
@@ -13,7 +13,7 @@ export default function ProMenuItem({ counts }: { counts?: SideMenuCounts }) {
     <MenuItem
       to="/pro-services"
       label="PRO"
-      icon={<Pro />}
+      icon={<Star className="w-5 h-5" />}
       count={counts?.kycApplicationCount}
       countBg="#DEDEDE"
       countColor="#7E22CE"

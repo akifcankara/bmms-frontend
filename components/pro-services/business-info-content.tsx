@@ -4,10 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import axiosInstance from '@/lib/axios';
 import InfoField from './info-field';
 import { InfoFieldWithIcon } from './info-field-with-icon';
-import SetupTypeIcon from '@/components/icons/setup-type-icon';
-import PreferredJurisdictionIcon from '@/components/icons/preferred-jurisdiction-icon';
-import ExpectedTimelineIcon from '@/components/icons/expected-timeline-icon';
-import BusinessInfoBadge from '@/components/icons/business-info-badge';
+import { Plus, IdCard, Calendar, BadgeCheck } from 'lucide-react';
 
 const TITLE = 'Business Setup Intent';
 const SUBTITLE = 'Your business setup plans and preferences';
@@ -59,7 +56,7 @@ export default function BusinessInfoContent() {
     value: data.companySetupType,
     icon: (
       <div className="w-8 h-8 rounded-[8px] bg-[#ccfbf1] flex items-center justify-center">
-        <SetupTypeIcon />
+        <Plus className="w-4 h-4 text-[#0D9488]" />
       </div>
     ),
   };
@@ -69,7 +66,7 @@ export default function BusinessInfoContent() {
     value: data.preferredJurisdiction,
     icon: (
       <div className="w-8 h-8 rounded-[8px] bg-[#dcfce7] flex items-center justify-center">
-        <PreferredJurisdictionIcon />
+        <IdCard className="w-[14px] h-4 text-[#16A34A]" />
       </div>
     ),
   };
@@ -84,7 +81,7 @@ export default function BusinessInfoContent() {
     value: data.expectedTimeline,
     icon: (
       <div className="w-8 h-8 rounded-[8px] bg-[#dbeafe] flex items-center justify-center">
-        <ExpectedTimelineIcon />
+        <Calendar className="w-[14px] h-4 text-[#2563EB]" />
       </div>
     ),
   };
@@ -100,7 +97,7 @@ export default function BusinessInfoContent() {
                 'linear-gradient(135deg, rgb(168, 85, 247) 0%, rgb(147, 51, 234) 100%)',
             }}
           >
-            <BusinessInfoBadge />
+            <BadgeCheck className="w-[18px] h-[18px] text-white" />
           </div>
 
           <div className="flex flex-col">

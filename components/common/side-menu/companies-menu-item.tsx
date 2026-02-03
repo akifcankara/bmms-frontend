@@ -1,8 +1,8 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
+import { Building2 } from 'lucide-react';
 import MenuItem from '../menu-item';
-import Company from '../../icons/company';
 
 export default function CompaniesMenuItem() {
   const pathname = usePathname();
@@ -13,7 +13,7 @@ export default function CompaniesMenuItem() {
     <MenuItem
       to="/companies"
       label="Companies"
-      icon={<Company />}
+      icon={<Building2 className="w-5 h-5" />}
       count={89}
       active={isActive}
     />

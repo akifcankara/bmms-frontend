@@ -2,10 +2,7 @@
 import { useParams } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import axiosInstance from '@/lib/axios';
-import BankIcon from '../icons/bank-icon';
-import CheckIcon from '../icons/check-icon';
-import BankBuildingIcon from '../icons/bank-building-icon';
-import MoneyIcon from '../icons/money-icon';
+import { Check, Banknote, Landmark } from 'lucide-react';
 
 const HEADER_TITLE = 'Banking & Additional Services';
 const HEADER_SUBTITLE = 'Banking and business service requirements';
@@ -63,7 +60,7 @@ export default function BankingServicesContent() {
                 'linear-gradient(135deg, rgb(6, 182, 212) 0%, rgb(8, 145, 178) 100%)',
             }}
           >
-            <BankIcon />
+            <Landmark className="w-5 h-5 text-white" />
           </div>
           <div>
             <h2 className="text-[20px] font-bold text-[#111827] leading-[28px]">
@@ -87,7 +84,7 @@ export default function BankingServicesContent() {
                 key={service}
                 className="bg-[#f9fafb] px-4 py-3 rounded-[8px] flex items-center gap-3"
               >
-                <CheckIcon />
+                <Check className="w-4 h-4 text-green-600" />
                 <span className="text-[14px] font-medium text-[#111827] leading-[20px]">
                   {service}
                 </span>
@@ -101,7 +98,7 @@ export default function BankingServicesContent() {
             {LABEL_PREFERRED_BANK}
           </label>
           <div className="bg-[#ecfeff] border border-[#a5f3fc] px-[17px] py-[13px] rounded-[8px] flex items-center gap-2">
-            <BankBuildingIcon />
+            <Landmark className="w-5 h-5 text-white" />
             <span className="text-[16px] font-bold text-[#111827] leading-[24px]">
               {data.preferredBank}
             </span>
@@ -118,7 +115,7 @@ export default function BankingServicesContent() {
                 key={service}
                 className="bg-[#f9fafb] px-4 py-3 rounded-[8px] flex items-center gap-2"
               >
-                <CheckIcon />
+                <Check className="w-4 h-4 text-green-600" />
                 <span className="text-[14px] font-medium text-[#111827] leading-[20px]">
                   {service}
                 </span>
@@ -132,7 +129,7 @@ export default function BankingServicesContent() {
             {LABEL_MONTHLY_BUDGET}
           </label>
           <div className="bg-[#f0fdf4] border border-[#bbf7d0] px-[17px] py-[13px] rounded-[8px] flex items-center gap-2">
-            <MoneyIcon />
+            <Banknote className="w-5 h-5 text-green-600" />
             <span className="text-[16px] font-bold text-[#111827] leading-[24px]">
               {data.monthlyBudget}
             </span>

@@ -1,8 +1,8 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
+import { Globe } from 'lucide-react';
 import MenuItem from '../menu-item';
-import World from '../../icons/world';
 
 export default function ExpansionMenuItem() {
   const pathname = usePathname();
@@ -13,7 +13,7 @@ export default function ExpansionMenuItem() {
     <MenuItem
       to="/expansion"
       label="Expansion"
-      icon={<World />}
+      icon={<Globe className="w-5 h-5" />}
       count={142}
       countBg="#DCFCE7"
       countColor="#15803D"

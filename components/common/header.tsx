@@ -1,10 +1,9 @@
 'use client';
 
 import Image from 'next/image';
-import { Menu } from 'lucide-react';
+import { Menu, Plus } from 'lucide-react';
 import { Button } from '../ui/button';
 import Avatar from './avatar';
-import PlusIcon from '../icons/plus';
 import { useBreadcrumb } from '@/store/breadcrumb';
 import Link from 'next/link';
 import { useEffect } from 'react';
@@ -60,7 +59,7 @@ export default function Header(props: HeaderProps) {
                   'linear-gradient(90deg, #00A0D2 10.38%, #05DC82 100%)',
               }}
             >
-              <PlusIcon /> {buttonText}
+              <Plus className="w-4 h-4" /> {buttonText}
             </Button>
           </Link>
           <Avatar />

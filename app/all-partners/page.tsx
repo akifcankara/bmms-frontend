@@ -19,11 +19,10 @@ export default function AllPartners() {
 
   return (
     <AppShell>
-      <p>Coming Soon</p>
-      {/* <main className="p-2 md:p-6">
+      <main className="p-2 md:p-6">
         <Filter />
         <AllPartnersTable />
-      </main> */}
+      </main>
     </AppShell>
   );
 }
